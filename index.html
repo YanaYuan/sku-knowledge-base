@@ -5,134 +5,295 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MCAPS SKU Knowledge Base</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,350;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+SC:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
   --bg: #ffffff;
-  --fg: #1a1a1a;
-  --fg2: #555;
-  --fg3: #888;
-  --border: #e5e5e5;
-  --border2: #f0f0f0;
-  --accent: #2563eb;
-  --accent-light: #eff6ff;
-  --accent-dark: #1d4ed8;
-  --green: #059669;
-  --green-light: #ecfdf5;
-  --amber: #d97706;
-  --amber-light: #fffbeb;
-  --red: #dc2626;
-  --red-light: #fef2f2;
-  --purple: #7c3aed;
-  --purple-light: #f5f3ff;
-  --code-bg: #f6f8fa;
-  --sidebar-w: 280px;
-  --header-h: 56px;
+  --bg-subtle: #f8f9fb;
+  --fg: #0f172a;
+  --fg2: #475569;
+  --fg3: #94a3b8;
+  --border: #e2e8f0;
+  --border2: #f1f5f9;
+  --accent: #0f62fe;
+  --accent-light: #edf5ff;
+  --accent-dark: #0043ce;
+  --accent-muted: #a6c8ff;
+  --green: #198038;
+  --green-light: #defbe6;
+  --amber: #b28600;
+  --amber-light: #fdf6e3;
+  --red: #da1e28;
+  --red-light: #fff1f1;
+  --purple: #8a3ffc;
+  --purple-light: #f6f2ff;
+  --teal: #007d79;
+  --teal-light: #d9fbfb;
+  --code-bg: #f4f4f4;
+  --sidebar-w: 260px;
+  --header-h: 48px;
+  --radius: 6px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: var(--fg); background: var(--bg); line-height: 1.65; font-size: 15px; -webkit-font-smoothing: antialiased; }
 
-/* Header */
-.header { position: fixed; top: 0; left: 0; right: 0; height: var(--header-h); background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; display: flex; align-items: center; padding: 0 24px; }
-.header-logo { font-weight: 800; font-size: 16px; letter-spacing: -0.5px; color: var(--accent); }
-.header-logo span { color: var(--fg); font-weight: 600; margin-left: 6px; }
-.header-search { margin-left: auto; position: relative; width: 320px; }
-.header-search input { width: 100%; padding: 8px 14px 8px 36px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; background: var(--code-bg); outline: none; transition: border-color .2s; }
-.header-search input:focus { border-color: var(--accent); }
-.header-search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--fg3); }
-.header-meta { margin-left: 20px; font-size: 12px; color: var(--fg3); white-space: nowrap; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Sidebar */
-.sidebar { position: fixed; top: var(--header-h); left: 0; bottom: 0; width: var(--sidebar-w); border-right: 1px solid var(--border); overflow-y: auto; padding: 20px 0; background: #fafafa; z-index: 50; }
-.sidebar::-webkit-scrollbar { width: 4px; }
-.sidebar::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
-.nav-section { padding: 0 16px; margin-bottom: 20px; }
-.nav-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--fg3); margin-bottom: 8px; padding-left: 8px; }
-.nav-link { display: block; padding: 6px 8px; border-radius: 6px; color: var(--fg2); text-decoration: none; font-size: 13.5px; font-weight: 450; transition: all .15s; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.6;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* ── Header ── */
+.header {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  background: var(--fg);
+  color: #fff;
+  z-index: 100;
+  display: flex; align-items: center;
+  padding: 0 20px;
+  font-size: 13px;
+}
+.header-brand {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 14px; letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+.header-brand i { font-size: 15px; color: var(--accent-muted); }
+.header-brand .sep { color: #475569; margin: 0 4px; font-weight: 300; }
+.header-brand .sub { font-weight: 400; color: #94a3b8; }
+.header-search {
+  margin-left: auto;
+  position: relative; width: 280px;
+}
+.header-search input {
+  width: 100%; padding: 6px 12px 6px 32px;
+  border: 1px solid #334155; border-radius: 4px;
+  font-size: 13px; font-family: inherit;
+  background: #1e293b; color: #e2e8f0;
+  outline: none; transition: all .2s;
+}
+.header-search input::placeholder { color: #64748b; }
+.header-search input:focus { border-color: var(--accent); background: #0f172a; }
+.header-search i {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  color: #64748b; font-size: 12px;
+}
+.header-meta {
+  margin-left: 16px; font-size: 11px; color: #64748b;
+  white-space: nowrap; letter-spacing: 0.02em;
+}
+.header-meta span { color: #94a3b8; }
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed; top: var(--header-h); left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  border-right: 1px solid var(--border);
+  overflow-y: auto; padding: 16px 0;
+  background: var(--bg-subtle);
+  z-index: 50;
+}
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.nav-section { padding: 0 12px; margin-bottom: 20px; }
+.nav-section-title {
+  font-size: 10.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--fg3); margin-bottom: 4px; padding-left: 8px;
+}
+.nav-link {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 8px; border-radius: 4px;
+  color: var(--fg2); text-decoration: none;
+  font-size: 13px; font-weight: 450;
+  transition: all .12s;
+}
+.nav-link i { width: 14px; text-align: center; font-size: 11px; color: var(--fg3); }
 .nav-link:hover { background: var(--accent-light); color: var(--accent); }
+.nav-link:hover i { color: var(--accent); }
 .nav-link.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
-.nav-link .badge { display: inline-block; background: var(--border); color: var(--fg3); font-size: 10px; font-weight: 600; padding: 1px 5px; border-radius: 4px; margin-left: 6px; }
+.nav-link.active i { color: var(--accent); }
+.nav-link .badge {
+  margin-left: auto;
+  background: var(--border);
+  color: var(--fg3); font-size: 10px; font-weight: 600;
+  padding: 1px 5px; border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+}
 
-/* Main */
-.main { margin-left: var(--sidebar-w); margin-top: var(--header-h); max-width: 880px; padding: 40px 48px 120px; }
+/* ── Main ── */
+.main {
+  margin-left: var(--sidebar-w);
+  margin-top: var(--header-h);
+  max-width: 860px;
+  padding: 36px 40px 100px;
+}
 
-/* Hero */
-.hero { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
-.hero h1 { font-size: 32px; font-weight: 800; letter-spacing: -1px; line-height: 1.2; margin-bottom: 8px; }
-.hero p { font-size: 16px; color: var(--fg2); max-width: 560px; }
-.hero-stats { display: flex; gap: 32px; margin-top: 20px; }
-.stat { display: flex; flex-direction: column; }
-.stat-value { font-size: 24px; font-weight: 700; color: var(--accent); }
-.stat-label { font-size: 12px; color: var(--fg3); margin-top: 2px; }
+/* ── Hero ── */
+.hero { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+.hero-eyebrow {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1.2px; color: var(--accent); margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 28px; font-weight: 700; letter-spacing: -0.8px;
+  line-height: 1.25; margin-bottom: 6px; color: var(--fg);
+}
+.hero p { font-size: 15px; color: var(--fg2); max-width: 540px; line-height: 1.6; }
+.hero-stats { display: flex; gap: 28px; margin-top: 20px; }
+.stat {
+  display: flex; flex-direction: column;
+  padding: 12px 16px; background: var(--bg-subtle);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  min-width: 100px;
+}
+.stat-value {
+  font-size: 20px; font-weight: 700; color: var(--fg);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: -0.5px;
+}
+.stat-label { font-size: 11px; color: var(--fg3); margin-top: 2px; font-weight: 500; }
 
-/* Sections */
-.section { margin-bottom: 56px; scroll-margin-top: calc(var(--header-h) + 24px); }
-.section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-.section-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+/* ── Sections ── */
+.section { margin-bottom: 48px; scroll-margin-top: calc(var(--header-h) + 20px); }
+.section-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border2);
+}
+.section-icon {
+  width: 28px; height: 28px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; flex-shrink: 0;
+}
+.section h2 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
 
-/* Cards */
-.card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 12px; }
-.card-title { font-weight: 600; font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+/* ── Cards ── */
+.card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px;
+  margin-bottom: 10px; box-shadow: var(--shadow-sm);
+}
+.card-title {
+  font-weight: 600; font-size: 13px; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px; color: var(--fg);
+}
+.card-title i { font-size: 12px; }
 
-/* Anatomy diagram */
-.anatomy { background: var(--code-bg); border-radius: 10px; padding: 24px; margin: 16px 0; overflow-x: auto; }
-.anatomy-sku { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 600; margin-bottom: 16px; letter-spacing: 0.5px; }
-.anatomy-sku .tok { display: inline-block; padding: 3px 6px; border-radius: 4px; margin: 0 1px; cursor: default; transition: all .15s; }
-.anatomy-sku .tok:hover { transform: translateY(-2px); }
-.tok-platform { background: #dbeafe; color: #1e40af; }
-.tok-type { background: #e0e7ff; color: #3730a3; }
-.tok-series { background: #fce7f3; color: #9d174d; }
-.tok-label { background: #f3e8ff; color: #6b21a8; }
-.tok-size { background: #ffe4e6; color: #9f1239; }
-.tok-qty { background: #d1fae5; color: #065f46; }
-.tok-unit { background: #ccfbf1; color: #0d9488; }
-.tok-mod { background: #fef3c7; color: #92400e; }
-.tok-region { background: #fed7aa; color: #c2410c; }
+/* ── Anatomy diagram ── */
+.anatomy {
+  background: var(--fg); border-radius: var(--radius);
+  padding: 24px; margin: 14px 0; overflow-x: auto;
+}
+.anatomy-sku {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px; font-weight: 500; letter-spacing: 0.3px;
+}
+.anatomy-sku .tok {
+  display: inline-block; padding: 3px 7px; border-radius: 3px;
+  margin: 0 1px; cursor: default; transition: all .15s;
+}
+.anatomy-sku .tok:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,.3); }
+.tok-platform { background: #1d4ed8; color: #bfdbfe; }
+.tok-type { background: #4338ca; color: #c7d2fe; }
+.tok-series { background: #9d174d; color: #fce7f3; }
+.tok-label { background: #6b21a8; color: #e9d5ff; }
+.tok-size { background: #be123c; color: #ffe4e6; }
+.tok-qty { background: #065f46; color: #d1fae5; }
+.tok-unit { background: #0d9488; color: #ccfbf1; }
+.tok-mod { background: #92400e; color: #fef3c7; }
+.tok-region { background: #c2410c; color: #fed7aa; }
+.anatomy-legend { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.anatomy-legend .chip {
+  font-size: 11px; padding: 3px 8px; border-radius: 3px;
+  font-weight: 500; background: rgba(255,255,255,.1); color: #cbd5e1;
+}
 
-.anatomy-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.anatomy-legend .chip { font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 500; }
+/* ── Tables ── */
+.wiki-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+.wiki-table th {
+  text-align: left; font-weight: 600; padding: 8px 10px;
+  border-bottom: 2px solid var(--border); color: var(--fg2);
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px;
+  position: sticky; top: var(--header-h); background: #fff; z-index: 1;
+}
+.wiki-table td { padding: 7px 10px; border-bottom: 1px solid var(--border2); vertical-align: top; }
+.wiki-table tr:hover td { background: var(--bg-subtle); }
+.wiki-table code {
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  background: var(--code-bg); padding: 2px 6px; border-radius: 3px;
+  color: var(--accent-dark); font-weight: 500;
+}
+.wiki-table .num {
+  text-align: right; font-variant-numeric: tabular-nums;
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--fg3);
+}
 
-/* Tables */
-.wiki-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 12px 0; }
-.wiki-table th { text-align: left; font-weight: 600; padding: 10px 12px; border-bottom: 2px solid var(--border); color: var(--fg2); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; position: sticky; top: var(--header-h); background: #fff; z-index: 1; }
-.wiki-table td { padding: 8px 12px; border-bottom: 1px solid var(--border2); vertical-align: top; }
-.wiki-table tr:hover td { background: #fafafa; }
-.wiki-table code { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; color: var(--accent-dark); }
-.wiki-table .num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--fg3); }
-
-/* Tags */
-.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
+/* ── Tags ── */
+.tag {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10.5px; font-weight: 600; padding: 2px 6px;
+  border-radius: 3px; letter-spacing: 0.02em;
+}
 .tag-blue { background: var(--accent-light); color: var(--accent); }
 .tag-green { background: var(--green-light); color: var(--green); }
 .tag-amber { background: var(--amber-light); color: var(--amber); }
 .tag-red { background: var(--red-light); color: var(--red); }
 .tag-purple { background: var(--purple-light); color: var(--purple); }
+.tag-teal { background: var(--teal-light); color: var(--teal); }
 
-/* Accordion */
-.accordion { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
-.accordion-header { padding: 14px 16px; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fff; transition: background .15s; user-select: none; }
-.accordion-header:hover { background: #fafafa; }
-.accordion-header .arrow { transition: transform .2s; font-size: 12px; color: var(--fg3); }
+/* ── Accordion ── */
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 6px; overflow: hidden; }
+.accordion-header {
+  padding: 10px 14px; font-weight: 500; font-size: 13px;
+  cursor: pointer; display: flex; justify-content: space-between;
+  align-items: center; background: var(--bg);
+  transition: background .12s; user-select: none;
+}
+.accordion-header:hover { background: var(--bg-subtle); }
+.accordion-header .arrow { transition: transform .2s; font-size: 10px; color: var(--fg3); }
 .accordion.open .accordion-header .arrow { transform: rotate(90deg); }
-.accordion-body { display: none; padding: 0 16px 16px; }
+.accordion-header .arrow i { font-size: 10px; }
+.accordion-body { display: none; padding: 0 14px 14px; }
 .accordion.open .accordion-body { display: block; }
 
-/* Search highlight */
-.highlight { background: #fef08a; padding: 0 2px; border-radius: 2px; }
-
-/* Responsive */
-@media (max-width: 960px) {
-  .sidebar { display: none; }
-  .main { margin-left: 0; padding: 32px 20px 80px; }
-  .header-search { width: 200px; }
-  .header-meta { display: none; }
+/* ── Code pattern block ── */
+.pattern-block {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px; background: var(--code-bg);
+  padding: 14px 16px; border-radius: var(--radius);
+  color: var(--fg2); line-height: 1.9; border: 1px solid var(--border);
 }
 
-/* Print */
+/* ── Tree diagram ── */
+.tree-block {
+  background: var(--bg-subtle); border-radius: var(--radius);
+  padding: 20px 24px; border: 1px solid var(--border);
+  font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 2;
+}
+.tree-block .tree-key { color: var(--accent); font-weight: 600; }
+.tree-block .tree-meta { color: var(--fg3); font-size: 11.5px; }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 28px 16px 80px; }
+  .header-search { width: 180px; }
+  .header-meta { display: none; }
+  .hero-stats { flex-wrap: wrap; gap: 12px; }
+}
 @media print {
   .sidebar, .header { display: none; }
-  .main { margin: 0; padding: 20px; }
+  .main { margin: 0; padding: 16px; max-width: 100%; }
 }
 </style>
 </head>
@@ -140,38 +301,46 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 
 <!-- Header -->
 <header class="header">
-  <div class="header-logo">SKU<span>Wiki</span></div>
-  <div class="header-search">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="searchInput" placeholder="搜索缩写、产品名、SKU…" autocomplete="off">
+  <div class="header-brand">
+    <i class="fa-solid fa-database"></i>
+    MCAPS
+    <span class="sep">/</span>
+    <span class="sub">SKU Knowledge Base</span>
   </div>
-  <div class="header-meta">Enterprise 6 · US · 600K rows · 49,916 SKUs</div>
+  <div class="header-search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" id="searchInput" placeholder="Search abbreviations, SKUs..." autocomplete="off">
+  </div>
+  <div class="header-meta">
+    Enterprise 6 <span>&middot;</span> US + CN <span>&middot;</span> <span>600K+ rows</span>
+  </div>
 </header>
 
 <!-- Sidebar -->
 <nav class="sidebar" id="sidebar">
   <div class="nav-section">
-    <div class="nav-section-title">快速开始</div>
-    <a href="#anatomy" class="nav-link">SKU 解剖图</a>
-    <a href="#examples" class="nav-link">实例拆解 <span class="badge">10</span></a>
+    <div class="nav-section-title">Quick Start</div>
+    <a href="#anatomy" class="nav-link"><i class="fa-solid fa-microscope"></i> SKU 解剖图</a>
+    <a href="#examples" class="nav-link"><i class="fa-solid fa-flask"></i> 实例拆解 <span class="badge">10</span></a>
   </div>
   <div class="nav-section">
-    <div class="nav-section-title">词典</div>
-    <a href="#abbr" class="nav-link">缩写词典 <span class="badge">100+</span></a>
-    <a href="#regions" class="nav-link">区域代码 <span class="badge">35+</span></a>
-    <a href="#vm" class="nav-link">VM 系列 <span class="badge">21</span></a>
+    <div class="nav-section-title">Reference</div>
+    <a href="#abbr" class="nav-link"><i class="fa-solid fa-spell-check"></i> 缩写词典 <span class="badge">70+</span></a>
+    <a href="#regions" class="nav-link"><i class="fa-solid fa-globe"></i> 区域代码 <span class="badge">35+</span></a>
+    <a href="#vm" class="nav-link"><i class="fa-solid fa-server"></i> VM 系列 <span class="badge">21</span></a>
   </div>
   <div class="nav-section">
-    <div class="nav-section-title">分类体系</div>
-    <a href="#hierarchy" class="nav-link">产品层级</a>
-    <a href="#families" class="nav-link">产品系列 Top 50</a>
-    <a href="#prefixes" class="nav-link">Part Number 前缀</a>
+    <div class="nav-section-title">Taxonomy</div>
+    <a href="#hierarchy" class="nav-link"><i class="fa-solid fa-sitemap"></i> 产品层级</a>
+    <a href="#families" class="nav-link"><i class="fa-solid fa-boxes-stacked"></i> 产品系列</a>
+    <a href="#prefixes" class="nav-link"><i class="fa-solid fa-hashtag"></i> PN 前缀</a>
   </div>
   <div class="nav-section">
-    <div class="nav-section-title">许可与定价</div>
-    <a href="#licensing" class="nav-link">许可条款</a>
-    <a href="#tiers" class="nav-link">服务等级</a>
-    <a href="#billing" class="nav-link">计费单位</a>
+    <div class="nav-section-title">Licensing</div>
+    <a href="#licensing" class="nav-link"><i class="fa-solid fa-file-contract"></i> 许可条款</a>
+    <a href="#tiers" class="nav-link"><i class="fa-solid fa-layer-group"></i> 服务等级</a>
+    <a href="#billing" class="nav-link"><i class="fa-solid fa-receipt"></i> 计费单位</a>
+    <a href="#storage-redundancy" class="nav-link"><i class="fa-solid fa-shield-halved"></i> 存储冗余</a>
   </div>
 </nav>
 
@@ -180,23 +349,24 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 
 <!-- Hero -->
 <div class="hero" id="top">
-  <h1>MCAPS SKU 知识库</h1>
-  <p>基于 APT Price List 构建的 SKU 命名体系解析。帮助你快速理解任意 Item Name 和 Part Number 的含义。</p>
+  <div class="hero-eyebrow">MCAPS Deal Agent &mdash; Internal Reference</div>
+  <h1>SKU Naming Convention Knowledge Base</h1>
+  <p>基于 APT Price List 构建的 SKU 命名体系完整解析。覆盖缩写词典、区域代码、VM 系列、产品层级、许可条款等全部维度。</p>
   <div class="hero-stats">
-    <div class="stat"><span class="stat-value">49,916</span><span class="stat-label">唯一 SKU</span></div>
-    <div class="stat"><span class="stat-value">429</span><span class="stat-label">产品系列</span></div>
-    <div class="stat"><span class="stat-value">35+</span><span class="stat-label">区域代码</span></div>
-    <div class="stat"><span class="stat-value">100+</span><span class="stat-label">常见缩写</span></div>
+    <div class="stat"><span class="stat-value">49,916</span><span class="stat-label">Unique SKUs</span></div>
+    <div class="stat"><span class="stat-value">429</span><span class="stat-label">Product Families</span></div>
+    <div class="stat"><span class="stat-value">35+</span><span class="stat-label">Region Codes</span></div>
+    <div class="stat"><span class="stat-value">70+</span><span class="stat-label">Abbreviations</span></div>
   </div>
 </div>
 
 <!-- SKU Anatomy -->
 <div class="section" id="anatomy">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--accent-light);">🔬</div>
+    <div class="section-icon" style="background: var(--accent-light); color: var(--accent);"><i class="fa-solid fa-microscope"></i></div>
     <h2>SKU 解剖图</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:16px;">每个 Item Name 都遵循固定的 token 结构。下面是一个典型 Azure VM SKU 的完整拆解：</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">每个 Item Name 都遵循固定的 token 结构。下面是一个典型 Azure VM SKU 的完整拆解：</p>
 
   <div class="anatomy">
     <div class="anatomy-sku">
@@ -204,32 +374,31 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
       <span class="tok tok-type">VM</span>
       <span class="tok tok-series">Ev3/ESv3</span>
       <span class="tok tok-label">Srs</span>
-      <span style="color:var(--fg3)">-</span>
+      <span style="color:#475569">-</span>
       <span class="tok tok-size">E32 v3/E32s v3</span>
-      <span style="color:var(--fg3)">-</span>
+      <span style="color:#475569">-</span>
       <span class="tok tok-qty">10</span>
       <span class="tok tok-unit">Hrs</span>
-      <span style="color:var(--fg3)">-</span>
+      <span style="color:#475569">-</span>
       <span class="tok tok-region">AU E</span>
     </div>
     <div class="anatomy-legend">
-      <span class="chip tok-platform">平台 = Azure</span>
-      <span class="chip tok-type">类型 = Virtual Machine</span>
-      <span class="chip tok-series">系列 = E-series v3</span>
-      <span class="chip tok-label">标签 = Series</span>
-      <span class="chip tok-size">规格 = 32 vCPU</span>
-      <span class="chip tok-qty">数量 = 10</span>
-      <span class="chip tok-unit">单位 = Hours</span>
-      <span class="chip tok-region">区域 = Australia East</span>
+      <span class="chip tok-platform" style="background:#1d4ed8;color:#bfdbfe">Platform = Azure</span>
+      <span class="chip tok-type" style="background:#4338ca;color:#c7d2fe">Type = VM</span>
+      <span class="chip tok-series" style="background:#9d174d;color:#fce7f3">Series = E v3</span>
+      <span class="chip tok-size" style="background:#be123c;color:#ffe4e6">Size = 32 vCPU</span>
+      <span class="chip tok-qty" style="background:#065f46;color:#d1fae5">Qty = 10</span>
+      <span class="chip tok-unit" style="background:#0d9488;color:#ccfbf1">Unit = Hours</span>
+      <span class="chip tok-region" style="background:#c2410c;color:#fed7aa">Region = AU East</span>
     </div>
   </div>
 
-  <div style="margin-top: 16px;">
-    <p style="font-weight:600; margin-bottom:8px;">通用模式：</p>
-    <div style="font-family:'JetBrains Mono',monospace; font-size:13px; background:var(--code-bg); padding:14px 16px; border-radius:8px; color:var(--fg2); line-height:1.8;">
-      <span style="color:var(--accent);">[平台]</span> <span style="color:#7c3aed">[服务类型]</span> <span style="color:#9d174d">[系列/版本]</span> <span style="color:var(--fg3)">Srs</span> <span style="color:#059669">[Win]</span>-<span style="color:#dc2626">[规格]</span>-<span style="color:#065f46">[数量]</span> <span style="color:#0d9488">[单位]</span>-<span style="color:#92400e">[修饰符]</span>-<span style="color:#c2410c">[区域]</span><br>
+  <div style="margin-top: 14px;">
+    <p style="font-weight:600; margin-bottom:6px; font-size:13px;">General Pattern</p>
+    <div class="pattern-block">
+      <span style="color:var(--accent);">[Platform]</span> <span style="color:#7c3aed">[Service]</span> <span style="color:#9d174d">[Series/Version]</span> <span style="color:var(--fg3)">Srs</span> <span style="color:#059669">[Win]</span>-<span style="color:#dc2626">[Size]</span>-<span style="color:#065f46">[Qty]</span> <span style="color:#0d9488">[Unit]</span>-<span style="color:#92400e">[Modifier]</span>-<span style="color:#c2410c">[Region]</span><br>
       <br>
-      <span style="color:var(--fg3);">修饰符 (可选): DvTst = 开发测试 | Low Pri = 低优先级 | Win = Windows 许可</span>
+      <span style="color:var(--fg3);">Modifiers (optional): DvTst = Dev/Test | Low Pri = Low Priority | Win = Windows License</span>
     </div>
   </div>
 </div>
@@ -237,176 +406,167 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 <!-- Example Breakdowns -->
 <div class="section" id="examples">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--green-light);">📖</div>
+    <div class="section-icon" style="background: var(--green-light); color: var(--green);"><i class="fa-solid fa-flask"></i></div>
     <h2>实例拆解</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:16px;">10 个不同类型的 SKU 逐 token 解读。点击展开查看。</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">10 个不同类型的 SKU 逐 token 解读。</p>
 
-  <!-- Example 1 -->
   <div class="accordion open">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>Az VM F/FS Srs Win-F1/F1s-100 Hrs-US SC</code> <span class="tag tag-blue">Compute</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
-        <tr><td><code>Az</code></td><td>Azure 平台</td></tr>
+        <tr><td><code>Az</code></td><td>Azure</td></tr>
         <tr><td><code>VM</code></td><td>Virtual Machine</td></tr>
-        <tr><td><code>F/FS</code></td><td>F-series（计算优化）/ FS = 支持 Premium SSD</td></tr>
+        <tr><td><code>F/FS</code></td><td>F-series (compute-optimized) / FS = Premium SSD</td></tr>
         <tr><td><code>Srs</code></td><td>Series</td></tr>
-        <tr><td><code>Win</code></td><td>包含 Windows Server 许可</td></tr>
-        <tr><td><code>F1/F1s</code></td><td>规格：1 vCPU</td></tr>
-        <tr><td><code>100 Hrs</code></td><td>计费：100 小时</td></tr>
-        <tr><td><code>US SC</code></td><td>区域：US South Central（德州）</td></tr>
+        <tr><td><code>Win</code></td><td>Windows Server license included</td></tr>
+        <tr><td><code>F1/F1s</code></td><td>Size: 1 vCPU</td></tr>
+        <tr><td><code>100 Hrs</code></td><td>Billing: 100 hours</td></tr>
+        <tr><td><code>US SC</code></td><td>Region: US South Central (Texas)</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- Example 2 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>Az VM Dv2/DSv2 Series Win-D14/DS14-10 Hrs-DvTst-US WC</code> <span class="tag tag-amber">Dev/Test</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
-        <tr><td><code>Dv2/DSv2</code></td><td>D-series v2（通用）/ DS = Premium SSD</td></tr>
-        <tr><td><code>Win</code></td><td>Windows 许可</td></tr>
-        <tr><td><code>D14/DS14</code></td><td>规格：16 vCPU / 112 GB RAM</td></tr>
-        <tr><td><code>DvTst</code></td><td>Dev/Test 折扣价（需 VS 订阅）</td></tr>
-        <tr><td><code>US WC</code></td><td>US West Central（怀俄明州）</td></tr>
+        <tr><td><code>Dv2/DSv2</code></td><td>D-series v2 (general purpose) / DS = Premium SSD</td></tr>
+        <tr><td><code>Win</code></td><td>Windows license</td></tr>
+        <tr><td><code>D14/DS14</code></td><td>Size: 16 vCPU / 112 GB RAM</td></tr>
+        <tr><td><code>DvTst</code></td><td>Dev/Test pricing (requires VS subscription)</td></tr>
+        <tr><td><code>US WC</code></td><td>US West Central (Wyoming)</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- Example 3 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>Az SQL DB Sgl Bsc-DTU-10/Day</code> <span class="tag tag-purple">SQL DB</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
         <tr><td><code>SQL DB</code></td><td>Azure SQL Database</td></tr>
-        <tr><td><code>Sgl</code></td><td>Single Database 部署模式</td></tr>
-        <tr><td><code>Bsc</code></td><td>Basic 层（最低 DTU 级别）</td></tr>
-        <tr><td><code>DTU</code></td><td>Database Transaction Unit（性能指标）</td></tr>
-        <tr><td><code>10/Day</code></td><td>计费：10 天</td></tr>
+        <tr><td><code>Sgl</code></td><td>Single Database deployment</td></tr>
+        <tr><td><code>Bsc</code></td><td>Basic tier (lowest DTU level)</td></tr>
+        <tr><td><code>DTU</code></td><td>Database Transaction Unit</td></tr>
+        <tr><td><code>10/Day</code></td><td>Billing: 10 days</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- Example 4 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>Az Redis Cache Bsc-C5-10 Hrs</code> <span class="tag tag-red">Cache</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
         <tr><td><code>Redis Cache</code></td><td>Azure Cache for Redis</td></tr>
-        <tr><td><code>Bsc</code></td><td>Basic 层（单节点，无 SLA）</td></tr>
-        <tr><td><code>C5</code></td><td>缓存大小 C5（26 GB）</td></tr>
-        <tr><td><code>10 Hrs</code></td><td>计费：10 小时</td></tr>
+        <tr><td><code>Bsc</code></td><td>Basic tier (single node, no SLA)</td></tr>
+        <tr><td><code>C5</code></td><td>Cache size C5 (26 GB)</td></tr>
+        <tr><td><code>10 Hrs</code></td><td>Billing: 10 hours</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- Example 5 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>Az VM A Srs Bsc Win-A4-100 Hrs-DvTst-US WC</code> <span class="tag tag-amber">Dev/Test</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
-        <tr><td><code>A Srs Bsc</code></td><td>A-series Basic 层（无负载均衡/自动缩放）</td></tr>
-        <tr><td><code>Win</code></td><td>Windows 许可</td></tr>
-        <tr><td><code>A4</code></td><td>规格：4 vCPU / 7 GB RAM</td></tr>
-        <tr><td><code>DvTst</code></td><td>Dev/Test 折扣</td></tr>
+        <tr><td><code>A Srs Bsc</code></td><td>A-series Basic (no load balancing / autoscale)</td></tr>
+        <tr><td><code>Win</code></td><td>Windows license</td></tr>
+        <tr><td><code>A4</code></td><td>Size: 4 vCPU / 7 GB RAM</td></tr>
+        <tr><td><code>DvTst</code></td><td>Dev/Test discount</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- Example 6 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>M365 E5 IP & Governance Sub Per User</code> <span class="tag tag-green">M365</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
         <tr><td><code>M365</code></td><td>Microsoft 365</td></tr>
-        <tr><td><code>E5</code></td><td>Enterprise 5（最高企业级别）</td></tr>
-        <tr><td><code>IP & Governance</code></td><td>信息保护与数据治理</td></tr>
-        <tr><td><code>Sub Per User</code></td><td>按用户订阅</td></tr>
+        <tr><td><code>E5</code></td><td>Enterprise 5 (highest tier)</td></tr>
+        <tr><td><code>IP & Governance</code></td><td>Information Protection & Data Governance</td></tr>
+        <tr><td><code>Sub Per User</code></td><td>Per-user subscription</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- Example 7 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>Office Standard ALng WAH</code> <span class="tag tag-green">On-Prem</span></span>
-      <span class="arrow">▶</span>
+      <span><code>Office Standard ALng WAH</code> <span class="tag tag-teal">On-Prem</span></span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
-        <tr><td><code>Office Standard</code></td><td>Office 标准版（Word/Excel/PPT/Outlook）</td></tr>
-        <tr><td><code>ALng</code></td><td>All Languages（多语言许可）</td></tr>
-        <tr><td><code>WAH</code></td><td>Work At Home（员工居家安装权利）</td></tr>
+        <tr><td><code>Office Standard</code></td><td>Office Standard (Word/Excel/PPT/Outlook)</td></tr>
+        <tr><td><code>ALng</code></td><td>All Languages</td></tr>
+        <tr><td><code>WAH</code></td><td>Work At Home (employee home-use rights)</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- Example 8 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>Win Server DC Core ALng LSA 2L</code> <span class="tag tag-purple">Server</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
         <tr><td><code>Win Server</code></td><td>Windows Server</td></tr>
-        <tr><td><code>DC</code></td><td>Datacenter 版（无限虚机）</td></tr>
-        <tr><td><code>Core</code></td><td>按处理器核心授权</td></tr>
+        <tr><td><code>DC</code></td><td>Datacenter edition (unlimited VMs)</td></tr>
+        <tr><td><code>Core</code></td><td>Per-core licensing (2-core min packs)</td></tr>
         <tr><td><code>ALng</code></td><td>All Languages</td></tr>
-        <tr><td><code>LSA</code></td><td>License + Software Assurance（永久许可 + SA）</td></tr>
-        <tr><td><code>2L</code></td><td>2 核许可包</td></tr>
+        <tr><td><code>LSA</code></td><td>License + Software Assurance</td></tr>
+        <tr><td><code>2L</code></td><td>2-core license pack</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- Example 9 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>Az VM MS Srs-M64ms-1 Hr-US W2</code> <span class="tag tag-red">Memory</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
-        <tr><td><code>MS Srs</code></td><td>M-series（极致内存，SAP HANA 工作负载）</td></tr>
-        <tr><td><code>M64ms</code></td><td>规格：64 vCPU / 1,792 GB RAM / Premium SSD</td></tr>
-        <tr><td><code>1 Hr</code></td><td>计费：1 小时</td></tr>
-        <tr><td><code>US W2</code></td><td>US West 2（俄勒冈）</td></tr>
+        <tr><td><code>MS Srs</code></td><td>M-series (extreme memory, SAP HANA)</td></tr>
+        <tr><td><code>M64ms</code></td><td>Size: 64 vCPU / 1,792 GB RAM / Premium SSD</td></tr>
+        <tr><td><code>1 Hr</code></td><td>Billing: 1 hour</td></tr>
+        <tr><td><code>US W2</code></td><td>US West 2 (Oregon)</td></tr>
       </table>
-      <p style="font-size:12px; color:var(--fg3); margin-top:8px;">
-        <b>规格后缀解读：</b>m = 更多内存 / s = Premium SSD / r = RDMA / i = 独占硬件
+      <p style="font-size:11.5px; color:var(--fg3); margin-top:6px;">
+        <i class="fa-solid fa-info-circle" style="margin-right:3px;"></i>
+        <b>Size suffixes:</b> m = more memory / s = Premium SSD / r = RDMA / i = isolated hardware
       </p>
     </div>
   </div>
 
-  <!-- Example 10 -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
       <span><code>D365 Customer Insights Sub</code> <span class="tag tag-green">D365</span></span>
-      <span class="arrow">▶</span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
         <tr><td><code>D365</code></td><td>Dynamics 365</td></tr>
-        <tr><td><code>Customer Insights</code></td><td>客户数据平台（CDP）</td></tr>
-        <tr><td><code>Sub</code></td><td>订阅（按租户/按 Profile 数）</td></tr>
+        <tr><td><code>Customer Insights</code></td><td>Customer Data Platform (CDP)</td></tr>
+        <tr><td><code>Sub</code></td><td>Subscription (per tenant/profile)</td></tr>
       </table>
     </div>
   </div>
@@ -415,92 +575,89 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 <!-- Abbreviation Dictionary -->
 <div class="section" id="abbr">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--purple-light);">📚</div>
+    <div class="section-icon" style="background: var(--purple-light); color: var(--purple);"><i class="fa-solid fa-spell-check"></i></div>
     <h2>缩写词典</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:16px;">按 SKU 出现频率排序的 100+ 个常见缩写。频率 = 包含该缩写的不同 SKU 数。</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">按 SKU 出现频率排序。频率 = 包含该缩写的不同 SKU 数。</p>
 
   <table class="wiki-table" id="abbrTable">
     <thead>
-      <tr><th style="width:100px">缩写</th><th>含义</th><th style="width:90px">频率</th><th style="width:80px">分类</th></tr>
+      <tr><th style="width:90px">Abbr</th><th>Meaning</th><th style="width:80px">Freq</th><th style="width:70px">Type</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>Az</code></td><td>Azure</td><td class="num">48,933</td><td><span class="tag tag-blue">平台</span></td></tr>
-      <tr><td><code>Hrs</code></td><td>Hours（小时，计费单位）</td><td class="num">29,318</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>Srs</code></td><td>Series（系列）</td><td class="num">19,710</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>VM</code></td><td>Virtual Machine</td><td class="num">19,399</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Win</code></td><td>Windows（OS 许可）</td><td class="num">11,417</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>Pri</code></td><td>Priority（优先级，常与 Low 搭配）</td><td class="num">10,900</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>Low</code></td><td>Low（低优先级 VM）</td><td class="num">10,892</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>DvTst</code></td><td>Dev/Test（开发测试折扣价）</td><td class="num">9,479</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>Cloud</code></td><td>Cloud（云部署/SKU 类型）</td><td class="num">7,250</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>Mo</code></td><td>Month（月，计费单位）</td><td class="num">6,188</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>GB</code></td><td>Gigabytes（存储单位）</td><td class="num">5,210</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>Std</code></td><td>Standard（标准层）</td><td class="num">4,937</td><td><span class="tag tag-red">等级</span></td></tr>
-      <tr><td><code>Hr</code></td><td>Hour（小时，单数）</td><td class="num">4,828</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>DB</code></td><td>Database</td><td class="num">4,408</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Ops</code></td><td>Operations（操作数）</td><td class="num">4,013</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td><td class="num">3,740</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>SQL</code></td><td>SQL Server / Azure SQL</td><td class="num">3,704</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Data</code></td><td>Data（数据服务）</td><td class="num">3,189</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Prem</code></td><td>Premium（高级层）</td><td class="num">3,061</td><td><span class="tag tag-red">等级</span></td></tr>
-      <tr><td><code>Blob</code></td><td>Blob Storage（非结构化存储）</td><td class="num">3,002</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>GRS</code></td><td>Geo-Redundant Storage</td><td class="num">2,693</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>Svcs</code></td><td>Services</td><td class="num">2,485</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>vCore</code></td><td>Virtual Core（SQL DB 定价模型）</td><td class="num">2,418</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>DL</code></td><td>Download / Data Lake</td><td class="num">2,233</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Day</code></td><td>Day（天，计费单位）</td><td class="num">2,086</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>Hot</code></td><td>Hot 访问层（Blob Storage）</td><td class="num">2,012</td><td><span class="tag tag-red">等级</span></td></tr>
-      <tr><td><code>Sgl</code></td><td>Single（单数据库部署）</td><td class="num">1,915</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>HDI</code></td><td>HDInsight（大数据服务）</td><td class="num">1,840</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Cache</code></td><td>Azure Cache for Redis</td><td class="num">1,779</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>1M</code></td><td>1 Million（百万级操作数）</td><td class="num">1,675</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>Cool</code></td><td>Cool 访问层（Blob Storage）</td><td class="num">1,637</td><td><span class="tag tag-red">等级</span></td></tr>
-      <tr><td><code>Comp</code></td><td>Compute（计算）</td><td class="num">1,624</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Blk</code></td><td>Block（块 Blob 存储）</td><td class="num">1,622</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>Hier</code></td><td>Hierarchical Namespace（Data Lake Gen2）</td><td class="num">1,609</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>Strg</code></td><td>Storage（存储）</td><td class="num">1,547</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Svc</code></td><td>Service</td><td class="num">1,536</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>ZRS</code></td><td>Zone-Redundant Storage</td><td class="num">1,426</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>App</code></td><td>Application / App Service</td><td class="num">1,381</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Bsc</code></td><td>Basic（基础层）</td><td class="num">1,351</td><td><span class="tag tag-red">等级</span></td></tr>
-      <tr><td><code>Svr</code></td><td>Server</td><td class="num">1,282</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>Page</code></td><td>Page Blob（页 Blob）</td><td class="num">1,222</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>Files</code></td><td>Azure Files（托管文件共享）</td><td class="num">1,200</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Redis</code></td><td>Redis 缓存</td><td class="num">1,191</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>Gen</code></td><td>Generation（硬件代次）</td><td class="num">1,153</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>AZ</code></td><td>Availability Zone（可用区）</td><td class="num">1,143</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>1K</code></td><td>1,000（千级操作数）</td><td class="num">1,126</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>Plan</code></td><td>App Service Plan / Calling Plan</td><td class="num">1,116</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>Flat</code></td><td>Flat-rate（固定费率）</td><td class="num">1,054</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>Archv</code></td><td>Archive（归档访问层）</td><td class="num">978</td><td><span class="tag tag-red">等级</span></td></tr>
-      <tr><td><code>SSD</code></td><td>Solid State Drive（托管磁盘类型）</td><td class="num">957</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>Dsks</code></td><td>Disks（托管磁盘）</td><td class="num">913</td><td><span class="tag tag-blue">服务</span></td></tr>
-      <tr><td><code>vCPU</code></td><td>Virtual CPU</td><td class="num">908</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>Mngd</code></td><td>Managed（托管）</td><td class="num">902</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>DTU</code></td><td>Database Transaction Unit</td><td class="num">901</td><td><span class="tag tag-green">单位</span></td></tr>
-      <tr><td><code>ALng</code></td><td>All Languages（多语言许可）</td><td class="num">~800</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>LSA</code></td><td>License + Software Assurance</td><td class="num">~600</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>SA</code></td><td>Software Assurance</td><td class="num">~500</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>Sub</code></td><td>Subscription（订阅）</td><td class="num">~464</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>WAH</code></td><td>Work At Home（居家安装权利）</td><td class="num">~100</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>CAL</code></td><td>Client Access License</td><td class="num">~400</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>CAO</code></td><td>Cloud Ahead Only（仅云，无本地权利）</td><td class="num">~200</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>CCAL</code></td><td>Combined CAL</td><td class="num">~100</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>DCAL</code></td><td>Device CAL（按设备授权）</td><td class="num">~100</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>SASU</code></td><td>SA Subscription（SA 订阅）</td><td class="num">~100</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>FLW</code></td><td>Frontline Worker（一线员工许可）</td><td class="num">~50</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>EMS</code></td><td>Enterprise Mobility + Security</td><td class="num">~50</td><td><span class="tag tag-blue">产品</span></td></tr>
-      <tr><td><code>ECAL</code></td><td>Enterprise CAL</td><td class="num">~50</td><td><span class="tag tag-amber">许可</span></td></tr>
-      <tr><td><code>SfB</code></td><td>Skype for Business</td><td class="num">~50</td><td><span class="tag tag-blue">产品</span></td></tr>
-      <tr><td><code>M365</code></td><td>Microsoft 365</td><td class="num">~200</td><td><span class="tag tag-blue">平台</span></td></tr>
-      <tr><td><code>O365</code></td><td>Office 365</td><td class="num">~100</td><td><span class="tag tag-blue">平台</span></td></tr>
-      <tr><td><code>D365</code></td><td>Dynamics 365</td><td class="num">~80</td><td><span class="tag tag-blue">平台</span></td></tr>
-      <tr><td><code>W365</code></td><td>Windows 365 (Cloud PC)</td><td class="num">~30</td><td><span class="tag tag-blue">平台</span></td></tr>
-      <tr><td><code>GCCH</code></td><td>Gov Community Cloud - High（美国国防）</td><td class="num">~50</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>GCon</code></td><td>Gov Community（US GCC 标准）</td><td class="num">~50</td><td><span class="tag tag-amber">修饰</span></td></tr>
-      <tr><td><code>OSE</code></td><td>Operating System Environment</td><td class="num">~30</td><td><span class="tag tag-purple">标签</span></td></tr>
-      <tr><td><code>SCE</code></td><td>Server and Cloud Enrollment</td><td class="num">~20</td><td><span class="tag tag-amber">许可</span></td></tr>
+      <tr><td><code>Az</code></td><td>Azure</td><td class="num">48,933</td><td><span class="tag tag-blue">Platform</span></td></tr>
+      <tr><td><code>Hrs</code></td><td>Hours</td><td class="num">29,318</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Srs</code></td><td>Series</td><td class="num">19,710</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>VM</code></td><td>Virtual Machine</td><td class="num">19,399</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Win</code></td><td>Windows (OS license included)</td><td class="num">11,417</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>Pri</code></td><td>Priority (often with Low)</td><td class="num">10,900</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>Low</code></td><td>Low Priority VM</td><td class="num">10,892</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>DvTst</code></td><td>Dev/Test pricing</td><td class="num">9,479</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>Cloud</code></td><td>Cloud deployment</td><td class="num">7,250</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>Mo</code></td><td>Month</td><td class="num">6,188</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>GB</code></td><td>Gigabytes</td><td class="num">5,210</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Std</code></td><td>Standard tier</td><td class="num">4,937</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>Hr</code></td><td>Hour (singular)</td><td class="num">4,828</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>DB</code></td><td>Database</td><td class="num">4,408</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Ops</code></td><td>Operations</td><td class="num">4,013</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td><td class="num">3,740</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>SQL</code></td><td>SQL Server / Azure SQL</td><td class="num">3,704</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Data</code></td><td>Data services</td><td class="num">3,189</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Prem</code></td><td>Premium tier</td><td class="num">3,061</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>Blob</code></td><td>Blob Storage</td><td class="num">3,002</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>GRS</code></td><td>Geo-Redundant Storage</td><td class="num">2,693</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>Svcs</code></td><td>Services</td><td class="num">2,485</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>vCore</code></td><td>Virtual Core (SQL DB pricing)</td><td class="num">2,418</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>DL</code></td><td>Download / Data Lake</td><td class="num">2,233</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Day</code></td><td>Day</td><td class="num">2,086</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Hot</code></td><td>Hot access tier</td><td class="num">2,012</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>Sgl</code></td><td>Single (database)</td><td class="num">1,915</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>HDI</code></td><td>HDInsight</td><td class="num">1,840</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Cache</code></td><td>Azure Cache for Redis</td><td class="num">1,779</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>1M</code></td><td>1 Million ops</td><td class="num">1,675</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Cool</code></td><td>Cool access tier</td><td class="num">1,637</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>Comp</code></td><td>Compute</td><td class="num">1,624</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Blk</code></td><td>Block Blob</td><td class="num">1,622</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>Hier</code></td><td>Hierarchical NS (Data Lake Gen2)</td><td class="num">1,609</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>Strg</code></td><td>Storage</td><td class="num">1,547</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Svc</code></td><td>Service</td><td class="num">1,536</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>ZRS</code></td><td>Zone-Redundant Storage</td><td class="num">1,426</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>App</code></td><td>App Service</td><td class="num">1,381</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Bsc</code></td><td>Basic tier</td><td class="num">1,351</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>Svr</code></td><td>Server</td><td class="num">1,282</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>Page</code></td><td>Page Blob</td><td class="num">1,222</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>Files</code></td><td>Azure Files</td><td class="num">1,200</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Redis</code></td><td>Redis Cache</td><td class="num">1,191</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Gen</code></td><td>Generation (hardware)</td><td class="num">1,153</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>AZ</code></td><td>Availability Zone</td><td class="num">1,143</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>1K</code></td><td>1,000 ops</td><td class="num">1,126</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Flat</code></td><td>Flat-rate pricing</td><td class="num">1,054</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>Archv</code></td><td>Archive tier</td><td class="num">978</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>SSD</code></td><td>Solid State Drive</td><td class="num">957</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>Dsks</code></td><td>Managed Disks</td><td class="num">913</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>vCPU</code></td><td>Virtual CPU</td><td class="num">908</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Mngd</code></td><td>Managed</td><td class="num">902</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>DTU</code></td><td>Database Transaction Unit</td><td class="num">901</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>ALng</code></td><td>All Languages</td><td class="num">~800</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>LSA</code></td><td>License + Software Assurance</td><td class="num">~600</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>SA</code></td><td>Software Assurance</td><td class="num">~500</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>Sub</code></td><td>Subscription</td><td class="num">~464</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>CAL</code></td><td>Client Access License</td><td class="num">~400</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>CAO</code></td><td>Cloud Ahead Only</td><td class="num">~200</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>M365</code></td><td>Microsoft 365</td><td class="num">~200</td><td><span class="tag tag-blue">Platform</span></td></tr>
+      <tr><td><code>WAH</code></td><td>Work At Home</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>CCAL</code></td><td>Combined CAL</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>O365</code></td><td>Office 365</td><td class="num">~100</td><td><span class="tag tag-blue">Platform</span></td></tr>
+      <tr><td><code>DCAL</code></td><td>Device CAL</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>SASU</code></td><td>SA Subscription</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>D365</code></td><td>Dynamics 365</td><td class="num">~80</td><td><span class="tag tag-blue">Platform</span></td></tr>
+      <tr><td><code>GCCH</code></td><td>Gov Community Cloud - High</td><td class="num">~50</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>EMS</code></td><td>Enterprise Mobility + Security</td><td class="num">~50</td><td><span class="tag tag-blue">Product</span></td></tr>
+      <tr><td><code>ECAL</code></td><td>Enterprise CAL</td><td class="num">~50</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>FLW</code></td><td>Frontline Worker</td><td class="num">~50</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>W365</code></td><td>Windows 365 (Cloud PC)</td><td class="num">~30</td><td><span class="tag tag-blue">Platform</span></td></tr>
+      <tr><td><code>OSE</code></td><td>Operating System Environment</td><td class="num">~30</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>SCE</code></td><td>Server and Cloud Enrollment</td><td class="num">~20</td><td><span class="tag tag-purple">License</span></td></tr>
     </tbody>
   </table>
 </div>
@@ -508,73 +665,71 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 <!-- Region Codes -->
 <div class="section" id="regions">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--amber-light);">🌍</div>
+    <div class="section-icon" style="background: var(--amber-light); color: var(--amber);"><i class="fa-solid fa-globe"></i></div>
     <h2>区域代码</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:16px;">Item Name 中的区域代码由「国家/大洲缩写」+「方向」组成。</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">区域代码 = 国家/大洲缩写 + 方向。</p>
 
-  <div class="card" style="margin-bottom: 20px; background: var(--code-bg); border: none;">
-    <p style="font-family:'JetBrains Mono',monospace; font-size: 13px;">
-      <span style="color:var(--accent); font-weight:600;">[国家缩写]</span> + <span style="color:var(--green); font-weight:600;">[方向]</span><br>
-      例: <code>US</code> <code>E2</code> = US East 2 &nbsp;|&nbsp; <code>AP</code> <code>SE</code> = Asia Pacific Southeast
+  <div class="card" style="background: var(--code-bg); border-color: var(--border);">
+    <p style="font-family:'IBM Plex Mono',monospace; font-size: 12.5px;">
+      <span style="color:var(--accent); font-weight:600;">[Country]</span> + <span style="color:var(--green); font-weight:600;">[Direction]</span>
+      &nbsp;&mdash;&nbsp;
+      e.g. <code>US</code> <code>E2</code> = US East 2 &nbsp;|&nbsp; <code>AP</code> <code>SE</code> = Asia Pacific Southeast
     </p>
   </div>
 
-  <table class="wiki-table">
+  <table class="wiki-table" style="margin-top:12px;">
     <thead>
-      <tr><th>代码</th><th>全称</th><th>位置</th><th>SKU 数</th></tr>
+      <tr><th>Code</th><th>Full Name</th><th>Location</th><th>SKUs</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>US E</code></td><td>US East</td><td>弗吉尼亚</td><td class="num">15,948</td></tr>
-      <tr><td><code>US E2</code></td><td>US East 2</td><td>弗吉尼亚 2</td><td class="num">14,712</td></tr>
-      <tr><td><code>US W</code></td><td>US West</td><td>加州</td><td class="num">13,020</td></tr>
-      <tr><td><code>US W2</code></td><td>US West 2</td><td>俄勒冈</td><td class="num">17,484</td></tr>
-      <tr><td><code>US SC</code></td><td>US South Central</td><td>德州</td><td class="num">14,484</td></tr>
-      <tr><td><code>US NC</code></td><td>US North Central</td><td>伊利诺伊</td><td class="num">11,712</td></tr>
-      <tr><td><code>US WC</code></td><td>US West Central</td><td>怀俄明</td><td class="num">11,400</td></tr>
-      <tr><td><code>US C</code></td><td>US Central</td><td>爱荷华</td><td class="num">—</td></tr>
-      <tr><td><code>EU W</code></td><td>Europe West</td><td>荷兰</td><td class="num">16,776</td></tr>
-      <tr><td><code>EU N</code></td><td>Europe North</td><td>爱尔兰</td><td class="num">15,300</td></tr>
-      <tr><td><code>UK S</code></td><td>UK South</td><td>伦敦</td><td class="num">17,088</td></tr>
-      <tr><td><code>UK W</code></td><td>UK West</td><td>卡迪夫</td><td class="num">14,148</td></tr>
-      <tr><td><code>AP SE</code></td><td>Asia Pacific Southeast</td><td>新加坡</td><td class="num">16,260</td></tr>
-      <tr><td><code>AP E</code></td><td>Asia Pacific East</td><td>香港</td><td class="num">11,856</td></tr>
-      <tr><td><code>JA E</code></td><td>Japan East</td><td>东京/埼玉</td><td class="num">15,624</td></tr>
-      <tr><td><code>JA W</code></td><td>Japan West</td><td>大阪</td><td class="num">13,104</td></tr>
-      <tr><td><code>AU E</code></td><td>Australia East</td><td>新南威尔士</td><td class="num">15,624</td></tr>
-      <tr><td><code>AU SE</code></td><td>Australia Southeast</td><td>维多利亚</td><td class="num">12,048</td></tr>
-      <tr><td><code>KR S</code></td><td>Korea South</td><td>釜山</td><td class="num">13,284</td></tr>
-      <tr><td><code>KR C</code></td><td>Korea Central</td><td>首尔</td><td class="num">—</td></tr>
-      <tr><td><code>IN S</code></td><td>India South</td><td>金奈</td><td class="num">12,228</td></tr>
-      <tr><td><code>IN W</code></td><td>India West</td><td>孟买</td><td class="num">10,308</td></tr>
-      <tr><td><code>IN C</code></td><td>India Central</td><td>浦那</td><td class="num">—</td></tr>
-      <tr><td><code>CA E</code></td><td>Canada East</td><td>魁北克</td><td class="num">11,868</td></tr>
-      <tr><td><code>CA C</code></td><td>Canada Central</td><td>多伦多</td><td class="num">—</td></tr>
-      <tr><td><code>BR S</code></td><td>Brazil South</td><td>圣保罗</td><td class="num">12,348</td></tr>
-      <tr><td><code>BR SE</code></td><td>Brazil Southeast</td><td>里约</td><td class="num">660</td></tr>
-      <tr><td><code>FR S</code></td><td>France South</td><td>马赛</td><td class="num">12,852</td></tr>
-      <tr><td><code>FR C</code></td><td>France Central</td><td>巴黎</td><td class="num">—</td></tr>
-      <tr><td><code>CH N</code></td><td>Switzerland North</td><td>苏黎世</td><td class="num">11,916</td></tr>
-      <tr><td><code>CH W</code></td><td>Switzerland West</td><td>日内瓦</td><td class="num">10,920</td></tr>
-      <tr><td><code>DE WC</code></td><td>Germany West Central</td><td>法兰克福</td><td class="num">6,540</td></tr>
-      <tr><td><code>DE N</code></td><td>Germany North</td><td>柏林</td><td class="num">5,880</td></tr>
-      <tr><td><code>AE N</code></td><td>UAE North</td><td>迪拜</td><td class="num">11,556</td></tr>
-      <tr><td><code>ZA N</code></td><td>South Africa North</td><td>约翰内斯堡</td><td class="num">9,204</td></tr>
-      <tr><td><code>ZA W</code></td><td>South Africa West</td><td>开普敦</td><td class="num">8,532</td></tr>
-      <tr><td><code>NO E</code></td><td>Norway East</td><td>奥斯陆</td><td class="num">2,472</td></tr>
-      <tr><td><code>NO W</code></td><td>Norway West</td><td>斯塔万格</td><td class="num">2,280</td></tr>
+      <tr><td><code>US E</code></td><td>US East</td><td>Virginia</td><td class="num">15,948</td></tr>
+      <tr><td><code>US E2</code></td><td>US East 2</td><td>Virginia</td><td class="num">14,712</td></tr>
+      <tr><td><code>US W</code></td><td>US West</td><td>California</td><td class="num">13,020</td></tr>
+      <tr><td><code>US W2</code></td><td>US West 2</td><td>Oregon</td><td class="num">17,484</td></tr>
+      <tr><td><code>US SC</code></td><td>US South Central</td><td>Texas</td><td class="num">14,484</td></tr>
+      <tr><td><code>US NC</code></td><td>US North Central</td><td>Illinois</td><td class="num">11,712</td></tr>
+      <tr><td><code>US WC</code></td><td>US West Central</td><td>Wyoming</td><td class="num">11,400</td></tr>
+      <tr><td><code>US C</code></td><td>US Central</td><td>Iowa</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>EU W</code></td><td>Europe West</td><td>Netherlands</td><td class="num">16,776</td></tr>
+      <tr><td><code>EU N</code></td><td>Europe North</td><td>Ireland</td><td class="num">15,300</td></tr>
+      <tr><td><code>UK S</code></td><td>UK South</td><td>London</td><td class="num">17,088</td></tr>
+      <tr><td><code>UK W</code></td><td>UK West</td><td>Cardiff</td><td class="num">14,148</td></tr>
+      <tr><td><code>AP SE</code></td><td>Asia Pacific SE</td><td>Singapore</td><td class="num">16,260</td></tr>
+      <tr><td><code>AP E</code></td><td>Asia Pacific East</td><td>Hong Kong</td><td class="num">11,856</td></tr>
+      <tr><td><code>JA E</code></td><td>Japan East</td><td>Tokyo</td><td class="num">15,624</td></tr>
+      <tr><td><code>JA W</code></td><td>Japan West</td><td>Osaka</td><td class="num">13,104</td></tr>
+      <tr><td><code>AU E</code></td><td>Australia East</td><td>NSW</td><td class="num">15,624</td></tr>
+      <tr><td><code>AU SE</code></td><td>Australia SE</td><td>Victoria</td><td class="num">12,048</td></tr>
+      <tr><td><code>KR S</code></td><td>Korea South</td><td>Busan</td><td class="num">13,284</td></tr>
+      <tr><td><code>KR C</code></td><td>Korea Central</td><td>Seoul</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>IN S</code></td><td>India South</td><td>Chennai</td><td class="num">12,228</td></tr>
+      <tr><td><code>IN W</code></td><td>India West</td><td>Mumbai</td><td class="num">10,308</td></tr>
+      <tr><td><code>IN C</code></td><td>India Central</td><td>Pune</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>CA E</code></td><td>Canada East</td><td>Quebec</td><td class="num">11,868</td></tr>
+      <tr><td><code>CA C</code></td><td>Canada Central</td><td>Toronto</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>BR S</code></td><td>Brazil South</td><td>S&atilde;o Paulo</td><td class="num">12,348</td></tr>
+      <tr><td><code>FR S</code></td><td>France South</td><td>Marseille</td><td class="num">12,852</td></tr>
+      <tr><td><code>CH N</code></td><td>Switzerland North</td><td>Zurich</td><td class="num">11,916</td></tr>
+      <tr><td><code>CH W</code></td><td>Switzerland West</td><td>Geneva</td><td class="num">10,920</td></tr>
+      <tr><td><code>DE WC</code></td><td>Germany West Central</td><td>Frankfurt</td><td class="num">6,540</td></tr>
+      <tr><td><code>DE N</code></td><td>Germany North</td><td>Berlin</td><td class="num">5,880</td></tr>
+      <tr><td><code>AE N</code></td><td>UAE North</td><td>Dubai</td><td class="num">11,556</td></tr>
+      <tr><td><code>ZA N</code></td><td>South Africa North</td><td>Johannesburg</td><td class="num">9,204</td></tr>
+      <tr><td><code>ZA W</code></td><td>South Africa West</td><td>Cape Town</td><td class="num">8,532</td></tr>
+      <tr><td><code>NO E</code></td><td>Norway East</td><td>Oslo</td><td class="num">2,472</td></tr>
+      <tr><td><code>NO W</code></td><td>Norway West</td><td>Stavanger</td><td class="num">2,280</td></tr>
     </tbody>
   </table>
 
-  <div class="card" style="margin-top: 16px;">
-    <div class="card-title">⚠️ 注意：容易混淆的代码</div>
-    <p style="font-size:13px; color:var(--fg2);">
-      <code>MS</code> = M-series VM（不是区域）&nbsp;|&nbsp;
+  <div class="card" style="margin-top: 12px;">
+    <div class="card-title"><i class="fa-solid fa-triangle-exclamation" style="color:var(--amber);"></i> Disambiguation</div>
+    <p style="font-size:12.5px; color:var(--fg2);">
+      <code>MS</code> = M-series VM (not a region) &nbsp;|&nbsp;
       <code>BS</code> = B-series VM &nbsp;|&nbsp;
       <code>LS</code> = L-series VM &nbsp;|&nbsp;
-      <code>NC</code> = NC-series GPU VM（也可以是 North Central）&nbsp;|&nbsp;
-      <code>SC</code> = South Central（区域） <br>
-      判断方法：如果紧跟在 <code>VM</code> 后面，是 VM 系列；如果在 SKU 末尾，是区域。
+      <code>NC</code> = NC-series GPU VM <em>or</em> North Central<br>
+      <strong>Rule:</strong> After <code>VM</code> = VM series. At end of SKU = region.
     </p>
   </div>
 </div>
@@ -582,44 +737,41 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 <!-- VM Series -->
 <div class="section" id="vm">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--red-light);">💻</div>
+    <div class="section-icon" style="background: var(--red-light); color: var(--red);"><i class="fa-solid fa-server"></i></div>
     <h2>VM 系列速查</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:16px;">Azure Compute 占 324,012 行（54%），是最大的产品系列。以下是所有 VM 系列。</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">Azure Compute = 324,012 rows (54%). All VM families listed below.</p>
 
   <table class="wiki-table">
-    <thead>
-      <tr><th>系列</th><th>定位</th><th>典型场景</th><th>SKU 数</th></tr>
-    </thead>
+    <thead><tr><th>Series</th><th>Category</th><th>Use Cases</th><th>SKUs</th></tr></thead>
     <tbody>
-      <tr><td><code>A / Av2</code></td><td>入门级通用</td><td>开发测试、低负载应用</td><td class="num">2,836</td></tr>
-      <tr><td><code>BS</code></td><td>突发型（Burstable）</td><td>轻量 Web/微服务，CPU 使用不均匀</td><td class="num">1,236</td></tr>
-      <tr><td><code>D / DS / Dv2 / DSv2</code></td><td>通用 v1-v2</td><td>企业应用、中等 DB</td><td class="num">2,142</td></tr>
-      <tr><td><code>Dv3 / DSv3</code></td><td>通用 v3</td><td>同上，更新硬件</td><td class="num">3,293</td></tr>
-      <tr><td><code>Ev3 / ESv3</code></td><td>内存优化 v3</td><td>大型 DB、内存缓存、SAP</td><td class="num">4,405</td></tr>
-      <tr><td><code>F / FS</code></td><td>计算优化 v1</td><td>批处理、游戏服务器</td><td class="num">1,170</td></tr>
-      <tr><td><code>FSv2</code></td><td>计算优化 v2</td><td>同上，更高 CPU 性能</td><td class="num">1,786</td></tr>
-      <tr><td><code>G / GS</code></td><td>大内存（旧代）</td><td>大型数据仓库</td><td class="num">320</td></tr>
-      <tr><td><code>H</code></td><td>高性能计算</td><td>流体力学、金融建模</td><td class="num">456</td></tr>
-      <tr><td><code>HBS</code></td><td>HB-series HPC</td><td>内存带宽密集型 HPC</td><td class="num">12</td></tr>
-      <tr><td><code>HCS</code></td><td>HC-series HPC</td><td>CPU 密集型 HPC</td><td class="num">18</td></tr>
-      <tr><td><code>LS / LSv2</code></td><td>存储优化</td><td>高磁盘吞吐量、NoSQL</td><td class="num">488</td></tr>
-      <tr><td><code>MS / MSv2</code></td><td>极致内存</td><td>SAP HANA、超大内存 DB（最高 4TB RAM）</td><td class="num">2,100</td></tr>
-      <tr><td><code>NCSv3</code></td><td>GPU 推理/训练</td><td>NVIDIA V100、深度学习</td><td class="num">336</td></tr>
-      <tr><td><code>NVSv3</code></td><td>GPU 可视化</td><td>vGPU、远程桌面</td><td class="num">108</td></tr>
-      <tr><td><code>PB</code></td><td>GPU AI/ML</td><td>NVIDIA A100、大模型训练</td><td class="num">45</td></tr>
+      <tr><td><code>A / Av2</code></td><td>Entry-level GP</td><td>Dev/test, low-traffic apps</td><td class="num">2,836</td></tr>
+      <tr><td><code>BS</code></td><td>Burstable</td><td>Lightweight web, microservices</td><td class="num">1,236</td></tr>
+      <tr><td><code>D / DS / Dv2 / DSv2</code></td><td>General Purpose v1-v2</td><td>Enterprise apps, mid-range DB</td><td class="num">2,142</td></tr>
+      <tr><td><code>Dv3 / DSv3</code></td><td>General Purpose v3</td><td>Same, newer hardware</td><td class="num">3,293</td></tr>
+      <tr><td><code>Ev3 / ESv3</code></td><td>Memory Optimized v3</td><td>Large DB, in-memory cache, SAP</td><td class="num">4,405</td></tr>
+      <tr><td><code>F / FS</code></td><td>Compute Optimized v1</td><td>Batch, game servers</td><td class="num">1,170</td></tr>
+      <tr><td><code>FSv2</code></td><td>Compute Optimized v2</td><td>Higher CPU perf</td><td class="num">1,786</td></tr>
+      <tr><td><code>G / GS</code></td><td>Large Memory (legacy)</td><td>Data warehousing</td><td class="num">320</td></tr>
+      <tr><td><code>H</code></td><td>HPC</td><td>CFD, financial modeling</td><td class="num">456</td></tr>
+      <tr><td><code>HBS / HCS</code></td><td>HPC v2</td><td>Memory/CPU-bound HPC</td><td class="num">30</td></tr>
+      <tr><td><code>LS / LSv2</code></td><td>Storage Optimized</td><td>High disk throughput, NoSQL</td><td class="num">488</td></tr>
+      <tr><td><code>MS / MSv2</code></td><td>Extreme Memory</td><td>SAP HANA (up to 4TB RAM)</td><td class="num">2,100</td></tr>
+      <tr><td><code>NCSv3</code></td><td>GPU Inference</td><td>NVIDIA V100, deep learning</td><td class="num">336</td></tr>
+      <tr><td><code>NVSv3</code></td><td>GPU Visualization</td><td>vGPU, remote desktop</td><td class="num">108</td></tr>
+      <tr><td><code>PB</code></td><td>GPU AI/ML</td><td>NVIDIA A100, LLM training</td><td class="num">45</td></tr>
     </tbody>
   </table>
 
-  <div class="card" style="margin-top: 16px;">
-    <div class="card-title">VM 规格后缀含义</div>
+  <div class="card" style="margin-top: 12px;">
+    <div class="card-title"><i class="fa-solid fa-code" style="color:var(--accent);"></i> VM Size Suffix Reference</div>
     <table class="wiki-table" style="margin:0">
-      <tr><td><code>s</code></td><td>支持 Premium SSD（如 E32<b>s</b> v3）</td></tr>
-      <tr><td><code>m</code></td><td>更多内存变体（如 M64<b>m</b>s = 1,792GB RAM）</td></tr>
-      <tr><td><code>r</code></td><td>RDMA 网络（高带宽互联，如 HB60<b>r</b>s）</td></tr>
-      <tr><td><code>i</code></td><td>独占硬件（单租户隔离，如 E64<b>i</b>）</td></tr>
-      <tr><td><code>Low Pri</code></td><td>低优先级（可抢占，~80% 折扣）</td></tr>
-      <tr><td><code>Win</code></td><td>价格包含 Windows Server 许可</td></tr>
+      <tr><td style="width:60px"><code>s</code></td><td>Premium SSD support (e.g. E32<b>s</b> v3)</td></tr>
+      <tr><td><code>m</code></td><td>More memory variant (e.g. M64<b>m</b>s = 1,792GB)</td></tr>
+      <tr><td><code>r</code></td><td>RDMA networking (e.g. HB60<b>r</b>s)</td></tr>
+      <tr><td><code>i</code></td><td>Isolated / single-tenant (e.g. E64<b>i</b>)</td></tr>
+      <tr><td><code>Low Pri</code></td><td>Preemptible, ~80% discount</td></tr>
+      <tr><td><code>Win</code></td><td>Windows Server license included</td></tr>
     </table>
   </div>
 </div>
@@ -627,50 +779,48 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 <!-- Product Hierarchy -->
 <div class="section" id="hierarchy">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--accent-light);">🏗️</div>
+    <div class="section-icon" style="background: var(--accent-light); color: var(--accent);"><i class="fa-solid fa-sitemap"></i></div>
     <h2>产品层级结构</h2>
   </div>
 
-  <div style="background:var(--code-bg); border-radius:10px; padding:24px; font-family:'JetBrains Mono',monospace; font-size:13px; line-height:2.2;">
-    <span style="color:var(--accent); font-weight:700;">Pool</span> <span style="color:var(--fg3);">（最大分类）</span><br>
-    &nbsp;&nbsp;├─ Servers <span style="color:var(--fg3);">· 593,606 行 · Azure + Windows Server + SQL Server</span><br>
-    &nbsp;&nbsp;├─ Applications <span style="color:var(--fg3);">· 5,626 行 · Office / Project / Visio</span><br>
-    &nbsp;&nbsp;├─ Systems <span style="color:var(--fg3);">· 616 行 · Windows OS / 终端</span><br>
-    &nbsp;&nbsp;└─ Non-specific <span style="color:var(--fg3);">· 152 行</span><br>
+  <div class="tree-block">
+    <span class="tree-key">Pool</span> <span class="tree-meta">(top-level classification)</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Servers <span class="tree-meta">&middot; 593,606 rows &middot; Azure + Win Server + SQL Server</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Applications <span class="tree-meta">&middot; 5,626 rows &middot; Office / Project / Visio</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Systems <span class="tree-meta">&middot; 616 rows &middot; Windows OS / endpoint</span><br>
+    &nbsp;&nbsp;&#9492;&#9472; Non-specific <span class="tree-meta">&middot; 152 rows</span><br>
     <br>
-    <span style="color:var(--accent); font-weight:700;">Product Family</span> <span style="color:var(--fg3);">（429 个）</span><br>
-    &nbsp;&nbsp;├─ Azure Compute <span style="color:var(--fg3);">· 324K 行</span><br>
-    &nbsp;&nbsp;├─ Azure Storage <span style="color:var(--fg3);">· 88K 行</span><br>
-    &nbsp;&nbsp;├─ Azure SQL DB <span style="color:var(--fg3);">· 51K 行</span><br>
-    &nbsp;&nbsp;└─ ... <span style="color:var(--fg3);">426 more</span><br>
+    <span class="tree-key">Product Family</span> <span class="tree-meta">(429 families)</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Azure Compute <span class="tree-meta">&middot; 324K</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Azure Storage <span class="tree-meta">&middot; 88K</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Azure SQL DB <span class="tree-meta">&middot; 51K</span><br>
+    &nbsp;&nbsp;&#9492;&#9472; ... <span class="tree-meta">426 more</span><br>
     <br>
-    <span style="color:var(--accent); font-weight:700;">Product Grouping</span> <span style="color:var(--fg3);">（定价模型）</span><br>
-    &nbsp;&nbsp;├─ Online Subscription - Overage VL <span style="color:var(--fg3);">· 587K · Azure 用量超额</span><br>
-    &nbsp;&nbsp;├─ Volume Licensing <span style="color:var(--fg3);">· 7.4K · 传统本地授权</span><br>
-    &nbsp;&nbsp;├─ Online Subscription Fixed Lic VL <span style="color:var(--fg3);">· 4.9K · M365/D365 固定订阅</span><br>
-    &nbsp;&nbsp;└─ Online Subscription - Commit VL <span style="color:var(--fg3);">· 540 · 预付承诺</span><br>
+    <span class="tree-key">Product Grouping</span> <span class="tree-meta">(pricing model)</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Online Subscription - Overage VL <span class="tree-meta">&middot; 587K &middot; Azure consumption</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Volume Licensing <span class="tree-meta">&middot; 7.4K &middot; traditional on-prem</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Online Subscription Fixed Lic VL <span class="tree-meta">&middot; 4.9K &middot; M365/D365 fixed</span><br>
+    &nbsp;&nbsp;&#9492;&#9472; Online Subscription - Commit VL <span class="tree-meta">&middot; 540 &middot; pre-commit</span><br>
     <br>
-    <span style="color:var(--accent); font-weight:700;">Product Type</span> <span style="color:var(--fg3);">（计费方式）</span><br>
-    &nbsp;&nbsp;├─ Fee <span style="color:var(--fg3);">· 587K · Azure 按量付费</span><br>
-    &nbsp;&nbsp;├─ Monthly Subscriptions-VL <span style="color:var(--fg3);">· 5.2K · 月度 VL 订阅</span><br>
-    &nbsp;&nbsp;├─ License/SA Pack <span style="color:var(--fg3);">· 4K · 永久许可 + SA 捆绑</span><br>
-    &nbsp;&nbsp;├─ SA <span style="color:var(--fg3);">· 1.4K · 纯 SA 续约</span><br>
-    &nbsp;&nbsp;├─ Step Up <span style="color:var(--fg3);">· 860 · 版本升级</span><br>
-    &nbsp;&nbsp;└─ SA Step Up / Extended / WAH / ... <span style="color:var(--fg3);">· 少量</span>
+    <span class="tree-key">Product Type</span> <span class="tree-meta">(billing method)</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Fee <span class="tree-meta">&middot; 587K &middot; metered usage</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Monthly Subscriptions-VL <span class="tree-meta">&middot; 5.2K</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; License/SA Pack <span class="tree-meta">&middot; 4K &middot; perpetual + SA</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; SA <span class="tree-meta">&middot; 1.4K &middot; renewal only</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Step Up <span class="tree-meta">&middot; 860 &middot; edition upgrade</span><br>
+    &nbsp;&nbsp;&#9492;&#9472; SA Step Up / Extended / WAH <span class="tree-meta">&middot; misc</span>
   </div>
 </div>
 
-<!-- Product Families Top 50 -->
+<!-- Product Families Top 30 -->
 <div class="section" id="families">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--green-light);">📦</div>
-    <h2>产品系列 Top 30</h2>
+    <div class="section-icon" style="background: var(--green-light); color: var(--green);"><i class="fa-solid fa-boxes-stacked"></i></div>
+    <h2>Product Families (Top 25)</h2>
   </div>
 
   <table class="wiki-table">
-    <thead>
-      <tr><th>#</th><th>Product Family</th><th>行数</th><th>占比</th></tr>
-    </thead>
+    <thead><tr><th>#</th><th>Product Family</th><th>Rows</th><th>Share</th></tr></thead>
     <tbody>
       <tr><td class="num">1</td><td>Azure Compute</td><td class="num">324,012</td><td class="num">54.0%</td></tr>
       <tr><td class="num">2</td><td>Azure Storage</td><td class="num">88,300</td><td class="num">14.7%</td></tr>
@@ -692,11 +842,6 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
       <tr><td class="num">18</td><td>PowerBI PaaS</td><td class="num">1,236</td><td class="num">0.2%</td></tr>
       <tr><td class="num">19</td><td>Azure DevOps</td><td class="num">1,224</td><td class="num">0.2%</td></tr>
       <tr><td class="num">20</td><td>Data Box</td><td class="num">1,164</td><td class="num">0.2%</td></tr>
-      <tr><td class="num">21</td><td>Reserved VM Instance</td><td class="num">1,140</td><td class="num">0.2%</td></tr>
-      <tr><td class="num">22</td><td>Azure Analysis Services</td><td class="num">1,020</td><td class="num">0.2%</td></tr>
-      <tr><td class="num">23</td><td>Win Server Datacenter Core</td><td class="num">532</td><td class="num">0.1%</td></tr>
-      <tr><td class="num">24</td><td>System Center Datacenter Core</td><td class="num">520</td><td class="num">0.1%</td></tr>
-      <tr><td class="num">25</td><td>CIS Suite Datacenter Core</td><td class="num">480</td><td class="num">0.1%</td></tr>
     </tbody>
   </table>
 </div>
@@ -704,41 +849,38 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 <!-- Part Number Prefixes -->
 <div class="section" id="prefixes">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--red-light);">🔢</div>
-    <h2>Part Number 前缀</h2>
+    <div class="section-icon" style="background: var(--red-light); color: var(--red);"><i class="fa-solid fa-hashtag"></i></div>
+    <h2>Part Number Prefix Patterns</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:16px;">Part Number 前 3 位可以快速判断产品大类。</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">The first 3 characters of a Part Number identify the product category.</p>
 
   <table class="wiki-table">
-    <thead>
-      <tr><th>前缀</th><th>产品类型</th><th>行数</th><th>占比</th></tr>
-    </thead>
+    <thead><tr><th>Prefix</th><th>Product Area</th><th>Rows</th><th>Share</th></tr></thead>
     <tbody>
-      <tr><td><code>AAD</code></td><td>Azure IaaS / Compute（主力 Azure SKU）</td><td class="num">319,768</td><td class="num">53%</td></tr>
-      <tr><td><code>AAA</code></td><td>Microsoft 365 / Office 365 套件</td><td class="num">245,052</td><td class="num">41%</td></tr>
-      <tr><td><code>997</code></td><td>Azure SSD Compute（旧系列）</td><td class="num">18,972</td><td class="num">3%</td></tr>
+      <tr><td><code>AAD</code></td><td>Azure IaaS / Compute</td><td class="num">319,768</td><td class="num">53%</td></tr>
+      <tr><td><code>AAA</code></td><td>Microsoft 365 / Office 365</td><td class="num">245,052</td><td class="num">41%</td></tr>
+      <tr><td><code>997</code></td><td>Azure SSD Compute (legacy)</td><td class="num">18,972</td><td class="num">3%</td></tr>
       <tr><td><code>4WP</code></td><td>Azure SQL Database</td><td class="num">4,572</td><td class="num">0.8%</td></tr>
-      <tr><td><code>9EA</code></td><td>Windows Server Datacenter Core</td><td class="num">532</td><td class="num">—</td></tr>
-      <tr><td><code>9EP</code></td><td>System Center Datacenter Core</td><td class="num">520</td><td class="num">—</td></tr>
-      <tr><td><code>9GS</code></td><td>CIS Suite Datacenter Core</td><td class="num">480</td><td class="num">—</td></tr>
-      <tr><td><code>9GA</code></td><td>CIS Suite Standard Core</td><td class="num">376</td><td class="num">—</td></tr>
-      <tr><td><code>76A</code></td><td>ECAL（Enterprise CAL）</td><td class="num">368</td><td class="num">—</td></tr>
-      <tr><td><code>76N</code></td><td>SharePoint Enterprise CAL</td><td class="num">328</td><td class="num">—</td></tr>
-      <tr><td><code>9EM</code></td><td>Windows Server Standard Core</td><td class="num">328</td><td class="num">—</td></tr>
-      <tr><td><code>359</code></td><td>SQL CAL</td><td class="num">256</td><td class="num">—</td></tr>
-      <tr><td><code>3SK</code></td><td>Azure Redis Cache</td><td class="num">216</td><td class="num">—</td></tr>
-      <tr><td><code>021</code></td><td>Office Standard（本地安装）</td><td class="num">124</td><td class="num">—</td></tr>
+      <tr><td><code>9EA</code></td><td>Windows Server DC Core</td><td class="num">532</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>9EP</code></td><td>System Center DC Core</td><td class="num">520</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>9GS</code></td><td>CIS Suite DC Core</td><td class="num">480</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>76A</code></td><td>ECAL (Enterprise CAL)</td><td class="num">368</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>76N</code></td><td>SharePoint Enterprise CAL</td><td class="num">328</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>9EM</code></td><td>Windows Server Standard Core</td><td class="num">328</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>359</code></td><td>SQL CAL</td><td class="num">256</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>3SK</code></td><td>Azure Redis Cache</td><td class="num">216</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>021</code></td><td>Office Standard (on-prem)</td><td class="num">124</td><td class="num">&mdash;</td></tr>
     </tbody>
   </table>
 
-  <div class="card" style="margin-top:16px;">
-    <div class="card-title">💡 规律总结</div>
-    <p style="font-size:13px; color:var(--fg2);">
-      <b>AAD-</b> = Azure 消费类 SKU（53%）<br>
-      <b>AAA-</b> = M365/O365 订阅类 SKU（41%）<br>
-      <b>9xx-</b> = 本地服务器软件（Windows Server / SQL Server / System Center）<br>
-      <b>76x / 7xx-</b> = CAL 类产品<br>
-      <b>021-</b> = 传统 Office 本地版
+  <div class="card" style="margin-top:12px;">
+    <div class="card-title"><i class="fa-solid fa-lightbulb" style="color:var(--amber);"></i> Pattern Summary</div>
+    <p style="font-size:12.5px; color:var(--fg2);">
+      <code>AAD-</code> Azure consumption (53%) &nbsp;|&nbsp;
+      <code>AAA-</code> M365/O365 subscriptions (41%) &nbsp;|&nbsp;
+      <code>9xx-</code> On-prem server software &nbsp;|&nbsp;
+      <code>76x-</code> CAL products &nbsp;|&nbsp;
+      <code>021-</code> Legacy Office
     </p>
   </div>
 </div>
@@ -746,52 +888,50 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 <!-- Licensing -->
 <div class="section" id="licensing">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--purple-light);">📜</div>
+    <div class="section-icon" style="background: var(--purple-light); color: var(--purple);"><i class="fa-solid fa-file-contract"></i></div>
     <h2>许可条款</h2>
   </div>
 
-  <h3 style="font-size:16px; margin-bottom:12px;">Program（签约类型）</h3>
+  <h3 style="font-size:14px; margin-bottom:8px; font-weight:600;">Program</h3>
   <table class="wiki-table">
-    <tr><td><code>Enterprise 6</code></td><td>Enterprise Agreement（EA）— 3 年承诺，锁定价格</td><td class="num">400,652</td></tr>
-    <tr><td><code>Enterprise Subscription</code></td><td>Enterprise Agreement Subscription（EAS）— 年付，无永久使用权</td><td class="num">199,348</td></tr>
+    <tr><td><code>Enterprise 6</code></td><td>EA &mdash; 3-year commitment, fixed pricing</td><td class="num">400,652</td></tr>
+    <tr><td><code>Enterprise Subscription</code></td><td>EAS &mdash; annual, no perpetual rights</td><td class="num">199,348</td></tr>
   </table>
 
-  <h3 style="font-size:16px; margin: 20px 0 12px;">Levels（EA 折扣等级）</h3>
+  <h3 style="font-size:14px; margin: 16px 0 8px; font-weight:600;">Levels (EA Discount Bands)</h3>
   <table class="wiki-table">
-    <tr><td><code>A</code></td><td>最小承诺级别（最低折扣）</td></tr>
-    <tr><td><code>B</code></td><td>中等</td></tr>
-    <tr><td><code>C</code></td><td>较高</td></tr>
-    <tr><td><code>D</code></td><td>最大承诺级别（最深折扣）</td></tr>
+    <tr><td><code>A</code></td><td>Smallest commitment (lowest discount)</td></tr>
+    <tr><td><code>B</code></td><td>Mid-range</td></tr>
+    <tr><td><code>C</code></td><td>Higher commitment</td></tr>
+    <tr><td><code>D</code></td><td>Largest commitment (deepest discount)</td></tr>
   </table>
-  <p style="font-size:12px; color:var(--fg3); margin-top:6px;">Level A→D 对应 EA 注册的年度 Azure/软件消费承诺规模。D 级客户享受最深折扣。</p>
 
-  <h3 style="font-size:16px; margin: 20px 0 12px;">Offering（订购模式）</h3>
+  <h3 style="font-size:14px; margin: 16px 0 8px; font-weight:600;">Offering</h3>
   <table class="wiki-table">
-    <tr><td><code>Additional Product</code></td><td>附加产品（在基础注册之上额外购买的工作负载）</td><td class="num">397,606</td></tr>
-    <tr><td><code>Server and Cloud Enrollment</code></td><td>SCE：服务器软件 + 云服务捆绑</td><td class="num">197,822</td></tr>
-    <tr><td><code>Enterprise</code></td><td>核心企业平台权益</td><td class="num">4,536</td></tr>
+    <tr><td><code>Additional Product</code></td><td>Add-on workloads on top of base enrollment</td><td class="num">397,606</td></tr>
+    <tr><td><code>Server and Cloud Enrollment</code></td><td>SCE: server + cloud bundle</td><td class="num">197,822</td></tr>
+    <tr><td><code>Enterprise</code></td><td>Core platform entitlement</td><td class="num">4,536</td></tr>
   </table>
 </div>
 
 <!-- Service Tiers -->
 <div class="section" id="tiers">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--amber-light);">📊</div>
+    <div class="section-icon" style="background: var(--amber-light); color: var(--amber);"><i class="fa-solid fa-layer-group"></i></div>
     <h2>服务等级</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:16px;">SKU 中的等级缩写代表性能和功能级别。</p>
 
   <table class="wiki-table">
-    <thead><tr><th>缩写</th><th>全称</th><th>说明</th></tr></thead>
+    <thead><tr><th>Abbr</th><th>Tier</th><th>Description</th></tr></thead>
     <tbody>
-      <tr><td><code>Bsc</code></td><td>Basic</td><td>最低层：无 SLA（Redis）、无自动扩展（VM A-Bsc）</td></tr>
-      <tr><td><code>Std</code></td><td>Standard</td><td>标准层：有 SLA、基础功能</td></tr>
-      <tr><td><code>Prem</code></td><td>Premium</td><td>高级层：高性能、更多特性、Premium SSD</td></tr>
-      <tr><td><code>Hot</code></td><td>Hot</td><td>热访问层（Blob Storage）— 频繁读写，存储贵、操作便宜</td></tr>
-      <tr><td><code>Cool</code></td><td>Cool</td><td>冷访问层 — 偶尔读取，存储便宜、操作贵（30天最短保留）</td></tr>
-      <tr><td><code>Archv</code></td><td>Archive</td><td>归档层 — 极少访问，最便宜存储、取回耗时数小时</td></tr>
-      <tr><td><code>Low Pri</code></td><td>Low Priority</td><td>低优先级 VM — 可被抢占，~80% 折扣</td></tr>
-      <tr><td><code>DvTst</code></td><td>Dev/Test</td><td>开发测试定价 — 需 VS Enterprise/Professional 订阅</td></tr>
+      <tr><td><code>Bsc</code></td><td>Basic</td><td>Lowest: no SLA (Redis), no autoscale (VM A-Bsc)</td></tr>
+      <tr><td><code>Std</code></td><td>Standard</td><td>Standard: SLA-backed, baseline features</td></tr>
+      <tr><td><code>Prem</code></td><td>Premium</td><td>High perf, more features, Premium SSD</td></tr>
+      <tr><td><code>Hot</code></td><td>Hot</td><td>Blob Storage &mdash; frequent R/W, higher storage cost</td></tr>
+      <tr><td><code>Cool</code></td><td>Cool</td><td>Blob Storage &mdash; infrequent access (30-day min retention)</td></tr>
+      <tr><td><code>Archv</code></td><td>Archive</td><td>Blob Storage &mdash; rare access, hours to retrieve</td></tr>
+      <tr><td><code>Low Pri</code></td><td>Low Priority</td><td>Preemptible VM, ~80% discount</td></tr>
+      <tr><td><code>DvTst</code></td><td>Dev/Test</td><td>Requires VS Enterprise/Professional subscription</td></tr>
     </tbody>
   </table>
 </div>
@@ -799,43 +939,41 @@ body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; color: v
 <!-- Billing Units -->
 <div class="section" id="billing">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--green-light);">💰</div>
+    <div class="section-icon" style="background: var(--green-light); color: var(--green);"><i class="fa-solid fa-receipt"></i></div>
     <h2>计费单位</h2>
   </div>
 
   <table class="wiki-table">
-    <thead><tr><th>缩写</th><th>含义</th><th>典型服务</th></tr></thead>
+    <thead><tr><th>Abbr</th><th>Unit</th><th>Typical Services</th></tr></thead>
     <tbody>
-      <tr><td><code>Hr / Hrs</code></td><td>小时</td><td>VM、Redis Cache、App Service</td></tr>
-      <tr><td><code>Day</code></td><td>天</td><td>SQL DB（DTU 模型）</td></tr>
-      <tr><td><code>Mo</code></td><td>月</td><td>固定订阅、Reserved Instance</td></tr>
-      <tr><td><code>GB</code></td><td>每 GB 存储</td><td>Blob Storage、Managed Disks</td></tr>
-      <tr><td><code>Ops</code></td><td>操作数</td><td>Storage Read/Write/List Ops</td></tr>
-      <tr><td><code>1K</code></td><td>千次操作</td><td>Storage operations</td></tr>
-      <tr><td><code>1M</code></td><td>百万次操作</td><td>Storage operations</td></tr>
-      <tr><td><code>10M</code></td><td>千万次操作</td><td>Storage operations（大规模）</td></tr>
-      <tr><td><code>vCore</code></td><td>虚拟核心</td><td>SQL DB（Gen5 vCore 模型）</td></tr>
-      <tr><td><code>DTU</code></td><td>数据库事务单位</td><td>SQL DB（旧定价模型）</td></tr>
-      <tr><td><code>vCPU</code></td><td>虚拟 CPU</td><td>Windows 365 Cloud PC</td></tr>
-      <tr><td><code>Sec</code></td><td>秒</td><td>部分 API 调用</td></tr>
+      <tr><td><code>Hr / Hrs</code></td><td>Hour(s)</td><td>VM, Redis Cache, App Service</td></tr>
+      <tr><td><code>Day</code></td><td>Day</td><td>SQL DB (DTU model)</td></tr>
+      <tr><td><code>Mo</code></td><td>Month</td><td>Fixed subscriptions, Reserved Instance</td></tr>
+      <tr><td><code>GB</code></td><td>Per GB storage</td><td>Blob Storage, Managed Disks</td></tr>
+      <tr><td><code>Ops</code></td><td>Operations</td><td>Storage R/W/List Ops</td></tr>
+      <tr><td><code>1K / 1M / 10M</code></td><td>K / M / 10M ops</td><td>Storage operations (scale tiers)</td></tr>
+      <tr><td><code>vCore</code></td><td>Virtual Core</td><td>SQL DB (Gen5 vCore model)</td></tr>
+      <tr><td><code>DTU</code></td><td>DB Transaction Unit</td><td>SQL DB (legacy model)</td></tr>
+      <tr><td><code>vCPU</code></td><td>Virtual CPU</td><td>Windows 365 Cloud PC</td></tr>
+      <tr><td><code>Sec</code></td><td>Second</td><td>Select API calls</td></tr>
     </tbody>
   </table>
 </div>
 
-<!-- Storage Redundancy Quick Reference -->
+<!-- Storage Redundancy -->
 <div class="section" id="storage-redundancy">
   <div class="section-header">
-    <div class="section-icon" style="background: var(--accent-light);">🔒</div>
+    <div class="section-icon" style="background: var(--teal-light); color: var(--teal);"><i class="fa-solid fa-shield-halved"></i></div>
     <h2>存储冗余类型</h2>
   </div>
 
   <table class="wiki-table">
-    <thead><tr><th>缩写</th><th>全称</th><th>副本数</th><th>说明</th></tr></thead>
+    <thead><tr><th>Abbr</th><th>Full Name</th><th>Copies</th><th>Description</th></tr></thead>
     <tbody>
-      <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td><td>3</td><td>同一数据中心 3 副本，最便宜</td></tr>
-      <tr><td><code>ZRS</code></td><td>Zone-Redundant Storage</td><td>3</td><td>跨 3 个可用区，防单区域故障</td></tr>
-      <tr><td><code>GRS</code></td><td>Geo-Redundant Storage</td><td>6</td><td>跨区域复制（主区 3 + 次区 3）</td></tr>
-      <tr><td><code>RA-GRS</code></td><td>Read-Access GRS</td><td>6</td><td>GRS + 次区域可读</td></tr>
+      <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td><td>3</td><td>3 copies in one datacenter, cheapest</td></tr>
+      <tr><td><code>ZRS</code></td><td>Zone-Redundant Storage</td><td>3</td><td>Across 3 availability zones</td></tr>
+      <tr><td><code>GRS</code></td><td>Geo-Redundant Storage</td><td>6</td><td>Cross-region (3 primary + 3 secondary)</td></tr>
+      <tr><td><code>RA-GRS</code></td><td>Read-Access GRS</td><td>6</td><td>GRS + read access to secondary</td></tr>
     </tbody>
   </table>
 </div>
@@ -847,27 +985,21 @@ function toggleAccordion(header) {
   header.parentElement.classList.toggle('open');
 }
 
-// Search functionality
 const searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('input', function() {
   const query = this.value.toLowerCase().trim();
   const rows = document.querySelectorAll('.wiki-table tbody tr');
   const accordions = document.querySelectorAll('.accordion');
-
   if (!query) {
     rows.forEach(r => r.style.display = '');
     accordions.forEach(a => a.style.display = '');
     return;
   }
-
   rows.forEach(row => {
-    const text = row.textContent.toLowerCase();
-    row.style.display = text.includes(query) ? '' : 'none';
+    row.style.display = row.textContent.toLowerCase().includes(query) ? '' : 'none';
   });
-
   accordions.forEach(acc => {
-    const text = acc.textContent.toLowerCase();
-    if (text.includes(query)) {
+    if (acc.textContent.toLowerCase().includes(query)) {
       acc.style.display = '';
       acc.classList.add('open');
     } else {
@@ -876,7 +1008,6 @@ searchInput.addEventListener('input', function() {
   });
 });
 
-// Active nav link
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('.nav-link');
 const observer = new IntersectionObserver(entries => {
@@ -887,7 +1018,7 @@ const observer = new IntersectionObserver(entries => {
       if (link) link.classList.add('active');
     }
   });
-}, { rootMargin: '-80px 0px -80% 0px' });
+}, { rootMargin: '-60px 0px -80% 0px' });
 sections.forEach(s => observer.observe(s));
 </script>
 
