@@ -312,7 +312,7 @@ body {
     <input type="text" id="searchInput" placeholder="Search abbreviations, SKUs..." autocomplete="off">
   </div>
   <div class="header-meta">
-    Enterprise 6 <span>&middot;</span> US + CN <span>&middot;</span> <span>600K+ rows</span>
+    China Market <span>&middot;</span> 7 Programs <span>&middot;</span> <span>600K rows</span>
   </div>
 </header>
 
@@ -325,19 +325,20 @@ body {
   </div>
   <div class="nav-section">
     <div class="nav-section-title">Reference</div>
-    <a href="#abbr" class="nav-link"><i class="fa-solid fa-spell-check"></i> 缩写词典 <span class="badge">70+</span></a>
-    <a href="#regions" class="nav-link"><i class="fa-solid fa-globe"></i> 区域代码 <span class="badge">35+</span></a>
-    <a href="#vm" class="nav-link"><i class="fa-solid fa-server"></i> VM 系列 <span class="badge">21</span></a>
+    <a href="#abbr" class="nav-link"><i class="fa-solid fa-spell-check"></i> 缩写词典 <span class="badge">80+</span></a>
+    <a href="#regions" class="nav-link"><i class="fa-solid fa-globe"></i> 区域代码 <span class="badge">50</span></a>
+    <a href="#vm" class="nav-link"><i class="fa-solid fa-server"></i> VM 系列 <span class="badge">19</span></a>
   </div>
   <div class="nav-section">
     <div class="nav-section-title">Taxonomy</div>
     <a href="#hierarchy" class="nav-link"><i class="fa-solid fa-sitemap"></i> 产品层级</a>
-    <a href="#families" class="nav-link"><i class="fa-solid fa-boxes-stacked"></i> 产品系列</a>
+    <a href="#families" class="nav-link"><i class="fa-solid fa-boxes-stacked"></i> 产品系列 <span class="badge">271</span></a>
     <a href="#prefixes" class="nav-link"><i class="fa-solid fa-hashtag"></i> PN 前缀</a>
   </div>
   <div class="nav-section">
     <div class="nav-section-title">Licensing</div>
     <a href="#licensing" class="nav-link"><i class="fa-solid fa-file-contract"></i> 许可条款</a>
+    <a href="#agreement-type" class="nav-link"><i class="fa-solid fa-handshake"></i> 协议类型</a>
     <a href="#tiers" class="nav-link"><i class="fa-solid fa-layer-group"></i> 服务等级</a>
     <a href="#billing" class="nav-link"><i class="fa-solid fa-receipt"></i> 计费单位</a>
     <a href="#storage-redundancy" class="nav-link"><i class="fa-solid fa-shield-halved"></i> 存储冗余</a>
@@ -351,12 +352,12 @@ body {
 <div class="hero" id="top">
   <div class="hero-eyebrow">MCAPS Deal Agent &mdash; Internal Reference</div>
   <h1>SKU Naming Convention Knowledge Base</h1>
-  <p>基于 APT Price List 构建的 SKU 命名体系完整解析。覆盖缩写词典、区域代码、VM 系列、产品层级、许可条款等全部维度。</p>
+  <p>基于 VL Central China Price List 构建的 SKU 命名体系完整解析。覆盖缩写词典、区域代码、VM 系列、产品层级、许可条款等全部维度。</p>
   <div class="hero-stats">
-    <div class="stat"><span class="stat-value">49,916</span><span class="stat-label">Unique SKUs</span></div>
-    <div class="stat"><span class="stat-value">429</span><span class="stat-label">Product Families</span></div>
-    <div class="stat"><span class="stat-value">35+</span><span class="stat-label">Region Codes</span></div>
-    <div class="stat"><span class="stat-value">70+</span><span class="stat-label">Abbreviations</span></div>
+    <div class="stat"><span class="stat-value">49,450</span><span class="stat-label">Unique SKUs</span></div>
+    <div class="stat"><span class="stat-value">271</span><span class="stat-label">Product Families</span></div>
+    <div class="stat"><span class="stat-value">50</span><span class="stat-label">Region Codes</span></div>
+    <div class="stat"><span class="stat-value">80+</span><span class="stat-label">Abbreviations</span></div>
   </div>
 </div>
 
@@ -366,39 +367,81 @@ body {
     <div class="section-icon" style="background: var(--accent-light); color: var(--accent);"><i class="fa-solid fa-microscope"></i></div>
     <h2>SKU 解剖图</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:14px;">每个 Item Name 都遵循固定的 token 结构。下面是一个典型 Azure VM SKU 的完整拆解：</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">China Price List 中的 SKU 遵循三种主要结构模式。下面逐一拆解：</p>
 
+  <p style="font-weight:600; margin-bottom:6px; font-size:13px;">Pattern 1: Azure (hyphen-delimited)</p>
   <div class="anatomy">
     <div class="anatomy-sku">
       <span class="tok tok-platform">Az</span>
       <span class="tok tok-type">VM</span>
-      <span class="tok tok-series">Ev3/ESv3</span>
+      <span class="tok tok-series">F/FS</span>
       <span class="tok tok-label">Srs</span>
       <span style="color:#475569">-</span>
-      <span class="tok tok-size">E32 v3/E32s v3</span>
+      <span class="tok tok-size">F2/F2s</span>
       <span style="color:#475569">-</span>
       <span class="tok tok-qty">10</span>
       <span class="tok tok-unit">Hrs</span>
       <span style="color:#475569">-</span>
-      <span class="tok tok-region">AU E</span>
+      <span class="tok tok-region">US SC</span>
     </div>
     <div class="anatomy-legend">
       <span class="chip tok-platform" style="background:#1d4ed8;color:#bfdbfe">Platform = Azure</span>
-      <span class="chip tok-type" style="background:#4338ca;color:#c7d2fe">Type = VM</span>
-      <span class="chip tok-series" style="background:#9d174d;color:#fce7f3">Series = E v3</span>
-      <span class="chip tok-size" style="background:#be123c;color:#ffe4e6">Size = 32 vCPU</span>
+      <span class="chip tok-type" style="background:#4338ca;color:#c7d2fe">Service = VM</span>
+      <span class="chip tok-series" style="background:#9d174d;color:#fce7f3">Series = F/FS</span>
+      <span class="chip tok-size" style="background:#be123c;color:#ffe4e6">Size = F2/F2s</span>
       <span class="chip tok-qty" style="background:#065f46;color:#d1fae5">Qty = 10</span>
       <span class="chip tok-unit" style="background:#0d9488;color:#ccfbf1">Unit = Hours</span>
-      <span class="chip tok-region" style="background:#c2410c;color:#fed7aa">Region = AU East</span>
+      <span class="chip tok-region" style="background:#c2410c;color:#fed7aa">Region = US South Central</span>
+    </div>
+  </div>
+
+  <p style="font-weight:600; margin: 18px 0 6px; font-size:13px;">Pattern 2: Volume Licensing On-Prem (space-delimited)</p>
+  <div class="anatomy">
+    <div class="anatomy-sku">
+      <span class="tok tok-type">SQL Server</span>
+      <span class="tok tok-series">Enterprise</span>
+      <span class="tok tok-label">Core</span>
+      <span class="tok tok-mod">ALng</span>
+      <span class="tok tok-unit">LSA</span>
+      <span class="tok tok-qty">4L</span>
+    </div>
+    <div class="anatomy-legend">
+      <span class="chip tok-type" style="background:#4338ca;color:#c7d2fe">Product = SQL Server</span>
+      <span class="chip tok-series" style="background:#9d174d;color:#fce7f3">Edition = Enterprise</span>
+      <span class="chip tok-label" style="background:#6b21a8;color:#e9d5ff">Component = Core</span>
+      <span class="chip tok-mod" style="background:#92400e;color:#fef3c7">LangCode = All Languages</span>
+      <span class="chip tok-unit" style="background:#0d9488;color:#ccfbf1">LicType = License + SA</span>
+      <span class="chip tok-qty" style="background:#065f46;color:#d1fae5">QtyPack = 4-License</span>
+    </div>
+  </div>
+
+  <p style="font-weight:600; margin: 18px 0 6px; font-size:13px;">Pattern 3: Modern SaaS (space-delimited)</p>
+  <div class="anatomy">
+    <div class="anatomy-sku">
+      <span class="tok tok-platform">M365</span>
+      <span class="tok tok-series">E5</span>
+      <span class="tok tok-type">IP &amp; Governance</span>
+      <span class="tok tok-unit">Sub</span>
+      <span class="tok tok-label">Per</span>
+      <span class="tok tok-mod">User</span>
+    </div>
+    <div class="anatomy-legend">
+      <span class="chip tok-platform" style="background:#1d4ed8;color:#bfdbfe">Suite = M365</span>
+      <span class="chip tok-series" style="background:#9d174d;color:#fce7f3">Tier = E5</span>
+      <span class="chip tok-type" style="background:#4338ca;color:#c7d2fe">Feature = IP & Governance</span>
+      <span class="chip tok-unit" style="background:#0d9488;color:#ccfbf1">License = Subscription</span>
+      <span class="chip tok-mod" style="background:#92400e;color:#fef3c7">Unit = Per User</span>
     </div>
   </div>
 
   <div style="margin-top: 14px;">
-    <p style="font-weight:600; margin-bottom:6px; font-size:13px;">General Pattern</p>
+    <p style="font-weight:600; margin-bottom:6px; font-size:13px;">General Patterns</p>
     <div class="pattern-block">
-      <span style="color:var(--accent);">[Platform]</span> <span style="color:#7c3aed">[Service]</span> <span style="color:#9d174d">[Series/Version]</span> <span style="color:var(--fg3)">Srs</span> <span style="color:#059669">[Win]</span>-<span style="color:#dc2626">[Size]</span>-<span style="color:#065f46">[Qty]</span> <span style="color:#0d9488">[Unit]</span>-<span style="color:#92400e">[Modifier]</span>-<span style="color:#c2410c">[Region]</span><br>
+      <strong>Azure:</strong> <span style="color:var(--accent);">[Az]</span> <span style="color:#7c3aed">[Service]</span> <span style="color:#9d174d">[Series]</span> <span style="color:var(--fg3)">Srs</span> <span style="color:#059669">[Win]</span>-<span style="color:#dc2626">[Size]</span>-<span style="color:#065f46">[Qty]</span>/<span style="color:#0d9488">[Unit]</span>-<span style="color:#92400e">[Modifier]</span>-<span style="color:#c2410c">[Region]</span><br>
+      <strong>On-Prem:</strong> <span style="color:#7c3aed">[Product]</span> <span style="color:#9d174d">[Edition]</span> <span style="color:#6b21a8">[Component]</span> <span style="color:#92400e">[LangCode]</span> <span style="color:#0d9488">[LicType]</span> <span style="color:#065f46">[QtyPack]</span> <span style="color:var(--fg3)">[Qualifier]</span><br>
+      <strong>SaaS:</strong> <span style="color:var(--accent);">[Suite]</span> <span style="color:#9d174d">[Tier]</span> <span style="color:#7c3aed">[Feature]</span> <span style="color:#0d9488">Sub Per</span> <span style="color:#065f46">[Unit]</span> <span style="color:var(--fg3)">[Qualifier]</span><br>
       <br>
-      <span style="color:var(--fg3);">Modifiers (optional): DvTst = Dev/Test | Low Pri = Low Priority | Win = Windows License</span>
+      <span style="color:var(--fg3);">Modifiers (optional): DvTst = Dev/Test | Win = Windows License | AHB = Azure Hybrid Benefit | EEA = European Economic Area</span>
     </div>
   </div>
 </div>
@@ -413,7 +456,7 @@ body {
 
   <div class="accordion open">
     <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>Az VM F/FS Srs Win-F1/F1s-100 Hrs-US SC</code> <span class="tag tag-blue">Compute</span></span>
+      <span><code>Az VM F/FS Srs-F2/F2s-10 Hrs-US SC</code> <span class="tag tag-blue">Compute</span></span>
       <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
@@ -422,9 +465,8 @@ body {
         <tr><td><code>VM</code></td><td>Virtual Machine</td></tr>
         <tr><td><code>F/FS</code></td><td>F-series (compute-optimized) / FS = Premium SSD</td></tr>
         <tr><td><code>Srs</code></td><td>Series</td></tr>
-        <tr><td><code>Win</code></td><td>Windows Server license included</td></tr>
-        <tr><td><code>F1/F1s</code></td><td>Size: 1 vCPU</td></tr>
-        <tr><td><code>100 Hrs</code></td><td>Billing: 100 hours</td></tr>
+        <tr><td><code>F2/F2s</code></td><td>Size: 2 vCPU</td></tr>
+        <tr><td><code>10 Hrs</code></td><td>Billing: 10 hours</td></tr>
         <tr><td><code>US SC</code></td><td>Region: US South Central (Texas)</td></tr>
       </table>
     </div>
@@ -432,46 +474,48 @@ body {
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>Az VM Dv2/DSv2 Series Win-D14/DS14-10 Hrs-DvTst-US WC</code> <span class="tag tag-amber">Dev/Test</span></span>
+      <span><code>Az VM D/DS Srs Win-D11/DS11-10 Hrs-DvTst-AP E</code> <span class="tag tag-amber">Dev/Test</span></span>
       <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
-        <tr><td><code>Dv2/DSv2</code></td><td>D-series v2 (general purpose) / DS = Premium SSD</td></tr>
-        <tr><td><code>Win</code></td><td>Windows license</td></tr>
-        <tr><td><code>D14/DS14</code></td><td>Size: 16 vCPU / 112 GB RAM</td></tr>
+        <tr><td><code>D/DS</code></td><td>D-series (general purpose) / DS = Premium SSD</td></tr>
+        <tr><td><code>Win</code></td><td>Windows license included</td></tr>
+        <tr><td><code>D11/DS11</code></td><td>Size: 2 vCPU / 14 GB RAM</td></tr>
         <tr><td><code>DvTst</code></td><td>Dev/Test pricing (requires VS subscription)</td></tr>
-        <tr><td><code>US WC</code></td><td>US West Central (Wyoming)</td></tr>
+        <tr><td><code>AP E</code></td><td>East Asia (Hong Kong)</td></tr>
       </table>
     </div>
   </div>
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>Az SQL DB Sgl Bsc-DTU-10/Day</code> <span class="tag tag-purple">SQL DB</span></span>
+      <span><code>Az SQL DB Single Std-S0-DTUs-10/Day-AU E</code> <span class="tag tag-purple">SQL DB</span></span>
       <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
         <tr><td><code>SQL DB</code></td><td>Azure SQL Database</td></tr>
-        <tr><td><code>Sgl</code></td><td>Single Database deployment</td></tr>
-        <tr><td><code>Bsc</code></td><td>Basic tier (lowest DTU level)</td></tr>
-        <tr><td><code>DTU</code></td><td>Database Transaction Unit</td></tr>
+        <tr><td><code>Single</code></td><td>Single Database deployment</td></tr>
+        <tr><td><code>Std</code></td><td>Standard tier</td></tr>
+        <tr><td><code>S0</code></td><td>Performance level S0 (10 DTUs)</td></tr>
+        <tr><td><code>DTUs</code></td><td>Database Transaction Units</td></tr>
         <tr><td><code>10/Day</code></td><td>Billing: 10 days</td></tr>
+        <tr><td><code>AU E</code></td><td>Australia East (NSW)</td></tr>
       </table>
     </div>
   </div>
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>Az Redis Cache Bsc-C5-10 Hrs</code> <span class="tag tag-red">Cache</span></span>
+      <span><code>Az Redis Cache Bsc-C3-10 Hrs</code> <span class="tag tag-red">Cache</span></span>
       <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
         <tr><td><code>Redis Cache</code></td><td>Azure Cache for Redis</td></tr>
         <tr><td><code>Bsc</code></td><td>Basic tier (single node, no SLA)</td></tr>
-        <tr><td><code>C5</code></td><td>Cache size C5 (26 GB)</td></tr>
+        <tr><td><code>C3</code></td><td>Cache size C3 (13 GB)</td></tr>
         <tr><td><code>10 Hrs</code></td><td>Billing: 10 hours</td></tr>
       </table>
     </div>
@@ -479,15 +523,18 @@ body {
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>Az VM A Srs Bsc Win-A4-100 Hrs-DvTst-US WC</code> <span class="tag tag-amber">Dev/Test</span></span>
+      <span><code>Az Prem Page Blob-P10 LRS Dsk-1/Mo-US WC</code> <span class="tag tag-teal">Storage</span></span>
       <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
-        <tr><td><code>A Srs Bsc</code></td><td>A-series Basic (no load balancing / autoscale)</td></tr>
-        <tr><td><code>Win</code></td><td>Windows license</td></tr>
-        <tr><td><code>A4</code></td><td>Size: 4 vCPU / 7 GB RAM</td></tr>
-        <tr><td><code>DvTst</code></td><td>Dev/Test discount</td></tr>
+        <tr><td><code>Prem</code></td><td>Premium tier</td></tr>
+        <tr><td><code>Page Blob</code></td><td>Page Blob storage (used for VM disks)</td></tr>
+        <tr><td><code>P10</code></td><td>Disk size P10 (128 GB)</td></tr>
+        <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td></tr>
+        <tr><td><code>Dsk</code></td><td>Managed Disk</td></tr>
+        <tr><td><code>1/Mo</code></td><td>Billing: 1 month</td></tr>
+        <tr><td><code>US WC</code></td><td>US West Central (Wyoming)</td></tr>
       </table>
     </div>
   </div>
@@ -509,13 +556,13 @@ body {
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>Office Standard ALng WAH</code> <span class="tag tag-teal">On-Prem</span></span>
+      <span><code>Office Standard SLng WAH</code> <span class="tag tag-teal">On-Prem</span></span>
       <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
         <tr><td><code>Office Standard</code></td><td>Office Standard (Word/Excel/PPT/Outlook)</td></tr>
-        <tr><td><code>ALng</code></td><td>All Languages</td></tr>
+        <tr><td><code>SLng</code></td><td>Single Language</td></tr>
         <tr><td><code>WAH</code></td><td>Work At Home (employee home-use rights)</td></tr>
       </table>
     </div>
@@ -523,17 +570,32 @@ body {
 
   <div class="accordion">
     <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>Win Server DC Core ALng LSA 2L</code> <span class="tag tag-purple">Server</span></span>
+      <span><code>SQL Server Enterprise Core ALng LSA 4L</code> <span class="tag tag-purple">Server</span></span>
       <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
     </div>
     <div class="accordion-body">
       <table class="wiki-table">
-        <tr><td><code>Win Server</code></td><td>Windows Server</td></tr>
-        <tr><td><code>DC</code></td><td>Datacenter edition (unlimited VMs)</td></tr>
-        <tr><td><code>Core</code></td><td>Per-core licensing (2-core min packs)</td></tr>
+        <tr><td><code>SQL Server</code></td><td>SQL Server</td></tr>
+        <tr><td><code>Enterprise</code></td><td>Enterprise edition (full features)</td></tr>
+        <tr><td><code>Core</code></td><td>Per-core licensing</td></tr>
         <tr><td><code>ALng</code></td><td>All Languages</td></tr>
         <tr><td><code>LSA</code></td><td>License + Software Assurance</td></tr>
-        <tr><td><code>2L</code></td><td>2-core license pack</td></tr>
+        <tr><td><code>4L</code></td><td>4-license core pack</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <span><code>D365 Business Central Premium Sub Per User</code> <span class="tag tag-green">D365</span></span>
+      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    </div>
+    <div class="accordion-body">
+      <table class="wiki-table">
+        <tr><td><code>D365</code></td><td>Dynamics 365</td></tr>
+        <tr><td><code>Business Central</code></td><td>ERP for SMB</td></tr>
+        <tr><td><code>Premium</code></td><td>Premium edition (manufacturing + service mgmt)</td></tr>
+        <tr><td><code>Sub Per User</code></td><td>Per-user subscription</td></tr>
       </table>
     </div>
   </div>
@@ -556,20 +618,6 @@ body {
       </p>
     </div>
   </div>
-
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggleAccordion(this)">
-      <span><code>D365 Customer Insights Sub</code> <span class="tag tag-green">D365</span></span>
-      <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
-    </div>
-    <div class="accordion-body">
-      <table class="wiki-table">
-        <tr><td><code>D365</code></td><td>Dynamics 365</td></tr>
-        <tr><td><code>Customer Insights</code></td><td>Customer Data Platform (CDP)</td></tr>
-        <tr><td><code>Sub</code></td><td>Subscription (per tenant/profile)</td></tr>
-      </table>
-    </div>
-  </div>
 </div>
 
 <!-- Abbreviation Dictionary -->
@@ -585,78 +633,53 @@ body {
       <tr><th style="width:90px">Abbr</th><th>Meaning</th><th style="width:80px">Freq</th><th style="width:70px">Type</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>Az</code></td><td>Azure</td><td class="num">48,933</td><td><span class="tag tag-blue">Platform</span></td></tr>
-      <tr><td><code>Hrs</code></td><td>Hours</td><td class="num">29,318</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>Srs</code></td><td>Series</td><td class="num">19,710</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>VM</code></td><td>Virtual Machine</td><td class="num">19,399</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Win</code></td><td>Windows (OS license included)</td><td class="num">11,417</td><td><span class="tag tag-amber">Modifier</span></td></tr>
-      <tr><td><code>Pri</code></td><td>Priority (often with Low)</td><td class="num">10,900</td><td><span class="tag tag-amber">Modifier</span></td></tr>
-      <tr><td><code>Low</code></td><td>Low Priority VM</td><td class="num">10,892</td><td><span class="tag tag-amber">Modifier</span></td></tr>
-      <tr><td><code>DvTst</code></td><td>Dev/Test pricing</td><td class="num">9,479</td><td><span class="tag tag-amber">Modifier</span></td></tr>
-      <tr><td><code>Cloud</code></td><td>Cloud deployment</td><td class="num">7,250</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>Mo</code></td><td>Month</td><td class="num">6,188</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>GB</code></td><td>Gigabytes</td><td class="num">5,210</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>Std</code></td><td>Standard tier</td><td class="num">4,937</td><td><span class="tag tag-red">Tier</span></td></tr>
-      <tr><td><code>Hr</code></td><td>Hour (singular)</td><td class="num">4,828</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>DB</code></td><td>Database</td><td class="num">4,408</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Ops</code></td><td>Operations</td><td class="num">4,013</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td><td class="num">3,740</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>SQL</code></td><td>SQL Server / Azure SQL</td><td class="num">3,704</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Data</code></td><td>Data services</td><td class="num">3,189</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Prem</code></td><td>Premium tier</td><td class="num">3,061</td><td><span class="tag tag-red">Tier</span></td></tr>
-      <tr><td><code>Blob</code></td><td>Blob Storage</td><td class="num">3,002</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>GRS</code></td><td>Geo-Redundant Storage</td><td class="num">2,693</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>Svcs</code></td><td>Services</td><td class="num">2,485</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>vCore</code></td><td>Virtual Core (SQL DB pricing)</td><td class="num">2,418</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>DL</code></td><td>Download / Data Lake</td><td class="num">2,233</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Day</code></td><td>Day</td><td class="num">2,086</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>Hot</code></td><td>Hot access tier</td><td class="num">2,012</td><td><span class="tag tag-red">Tier</span></td></tr>
-      <tr><td><code>Sgl</code></td><td>Single (database)</td><td class="num">1,915</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>HDI</code></td><td>HDInsight</td><td class="num">1,840</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Cache</code></td><td>Azure Cache for Redis</td><td class="num">1,779</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>1M</code></td><td>1 Million ops</td><td class="num">1,675</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>Cool</code></td><td>Cool access tier</td><td class="num">1,637</td><td><span class="tag tag-red">Tier</span></td></tr>
-      <tr><td><code>Comp</code></td><td>Compute</td><td class="num">1,624</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Blk</code></td><td>Block Blob</td><td class="num">1,622</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>Hier</code></td><td>Hierarchical NS (Data Lake Gen2)</td><td class="num">1,609</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>Strg</code></td><td>Storage</td><td class="num">1,547</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Svc</code></td><td>Service</td><td class="num">1,536</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>ZRS</code></td><td>Zone-Redundant Storage</td><td class="num">1,426</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>App</code></td><td>App Service</td><td class="num">1,381</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Bsc</code></td><td>Basic tier</td><td class="num">1,351</td><td><span class="tag tag-red">Tier</span></td></tr>
-      <tr><td><code>Svr</code></td><td>Server</td><td class="num">1,282</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>Page</code></td><td>Page Blob</td><td class="num">1,222</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>Files</code></td><td>Azure Files</td><td class="num">1,200</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Redis</code></td><td>Redis Cache</td><td class="num">1,191</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>Gen</code></td><td>Generation (hardware)</td><td class="num">1,153</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>AZ</code></td><td>Availability Zone</td><td class="num">1,143</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>1K</code></td><td>1,000 ops</td><td class="num">1,126</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>Flat</code></td><td>Flat-rate pricing</td><td class="num">1,054</td><td><span class="tag tag-amber">Modifier</span></td></tr>
-      <tr><td><code>Archv</code></td><td>Archive tier</td><td class="num">978</td><td><span class="tag tag-red">Tier</span></td></tr>
-      <tr><td><code>SSD</code></td><td>Solid State Drive</td><td class="num">957</td><td><span class="tag tag-teal">Label</span></td></tr>
-      <tr><td><code>Dsks</code></td><td>Managed Disks</td><td class="num">913</td><td><span class="tag tag-blue">Service</span></td></tr>
-      <tr><td><code>vCPU</code></td><td>Virtual CPU</td><td class="num">908</td><td><span class="tag tag-green">Unit</span></td></tr>
-      <tr><td><code>Mngd</code></td><td>Managed</td><td class="num">902</td><td><span class="tag tag-amber">Modifier</span></td></tr>
-      <tr><td><code>DTU</code></td><td>Database Transaction Unit</td><td class="num">901</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Az</code></td><td>Azure</td><td class="num">48,000+</td><td><span class="tag tag-blue">Platform</span></td></tr>
+      <tr><td><code>Hrs</code></td><td>Hours</td><td class="num">29,000+</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Srs</code></td><td>Series</td><td class="num">19,000+</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>VM</code></td><td>Virtual Machine</td><td class="num">19,000+</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Win</code></td><td>Windows (OS license included)</td><td class="num">11,000+</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>DvTst</code></td><td>Dev/Test pricing</td><td class="num">9,400+</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>Mo</code></td><td>Month</td><td class="num">6,000+</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>GB</code></td><td>Gigabytes</td><td class="num">5,200+</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Std</code></td><td>Standard tier</td><td class="num">4,900+</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>MCA</code></td><td>Microsoft Customer Agreement</td><td class="num">~4,600</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>DB</code></td><td>Database</td><td class="num">4,400+</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td><td class="num">3,700+</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>SQL</code></td><td>SQL Server / Azure SQL</td><td class="num">3,700+</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Blob</code></td><td>Blob Storage</td><td class="num">3,000+</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>Prem</code></td><td>Premium tier</td><td class="num">3,000+</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>GRS</code></td><td>Geo-Redundant Storage</td><td class="num">2,700+</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>vCore</code></td><td>Virtual Core (SQL DB pricing)</td><td class="num">2,400+</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>HDI</code></td><td>HDInsight</td><td class="num">1,800+</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>ZRS</code></td><td>Zone-Redundant Storage</td><td class="num">1,400+</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>Bsc</code></td><td>Basic tier</td><td class="num">1,300+</td><td><span class="tag tag-red">Tier</span></td></tr>
+      <tr><td><code>SSD</code></td><td>Solid State Drive</td><td class="num">~950</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>DTU</code></td><td>Database Transaction Unit</td><td class="num">900+</td><td><span class="tag tag-green">Unit</span></td></tr>
+      <tr><td><code>Mngd/Mgd</code></td><td>Managed</td><td class="num">~900</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>Dsks</code></td><td>Managed Disks</td><td class="num">~900</td><td><span class="tag tag-blue">Service</span></td></tr>
+      <tr><td><code>vCPU</code></td><td>Virtual CPU</td><td class="num">~900</td><td><span class="tag tag-green">Unit</span></td></tr>
       <tr><td><code>ALng</code></td><td>All Languages</td><td class="num">~800</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>SLng</code></td><td>Single Language</td><td class="num">~600</td><td><span class="tag tag-purple">License</span></td></tr>
       <tr><td><code>LSA</code></td><td>License + Software Assurance</td><td class="num">~600</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>AHB</code></td><td>Azure Hybrid Benefit</td><td class="num">~560</td><td><span class="tag tag-amber">Modifier</span></td></tr>
+      <tr><td><code>EEA</code></td><td>European Economic Area</td><td class="num">~540</td><td><span class="tag tag-amber">Modifier</span></td></tr>
       <tr><td><code>SA</code></td><td>Software Assurance</td><td class="num">~500</td><td><span class="tag tag-purple">License</span></td></tr>
-      <tr><td><code>Sub</code></td><td>Subscription</td><td class="num">~464</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>Sub</code></td><td>Subscription</td><td class="num">~460</td><td><span class="tag tag-purple">License</span></td></tr>
       <tr><td><code>CAL</code></td><td>Client Access License</td><td class="num">~400</td><td><span class="tag tag-purple">License</span></td></tr>
-      <tr><td><code>CAO</code></td><td>Cloud Ahead Only</td><td class="num">~200</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>FUSL</code></td><td>Fully Unified Subscription License</td><td class="num">~236</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>CAO</code></td><td>Complement Add-On</td><td class="num">~200</td><td><span class="tag tag-purple">License</span></td></tr>
       <tr><td><code>M365</code></td><td>Microsoft 365</td><td class="num">~200</td><td><span class="tag tag-blue">Platform</span></td></tr>
-      <tr><td><code>WAH</code></td><td>Work At Home</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
-      <tr><td><code>CCAL</code></td><td>Combined CAL</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>SASU</code></td><td>SA Step Up</td><td class="num">~150</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>ESU</code></td><td>Extended Security Updates</td><td class="num">~130</td><td><span class="tag tag-purple">License</span></td></tr>
       <tr><td><code>O365</code></td><td>Office 365</td><td class="num">~100</td><td><span class="tag tag-blue">Platform</span></td></tr>
+      <tr><td><code>CCAL</code></td><td>Complement CAL</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
       <tr><td><code>DCAL</code></td><td>Device CAL</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
-      <tr><td><code>SASU</code></td><td>SA Subscription</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
+      <tr><td><code>ECAL</code></td><td>Enterprise CAL Suite</td><td class="num">~100</td><td><span class="tag tag-purple">License</span></td></tr>
       <tr><td><code>D365</code></td><td>Dynamics 365</td><td class="num">~80</td><td><span class="tag tag-blue">Platform</span></td></tr>
-      <tr><td><code>GCCH</code></td><td>Gov Community Cloud - High</td><td class="num">~50</td><td><span class="tag tag-amber">Modifier</span></td></tr>
       <tr><td><code>EMS</code></td><td>Enterprise Mobility + Security</td><td class="num">~50</td><td><span class="tag tag-blue">Product</span></td></tr>
-      <tr><td><code>ECAL</code></td><td>Enterprise CAL</td><td class="num">~50</td><td><span class="tag tag-purple">License</span></td></tr>
       <tr><td><code>FLW</code></td><td>Frontline Worker</td><td class="num">~50</td><td><span class="tag tag-purple">License</span></td></tr>
-      <tr><td><code>W365</code></td><td>Windows 365 (Cloud PC)</td><td class="num">~30</td><td><span class="tag tag-blue">Platform</span></td></tr>
       <tr><td><code>OSE</code></td><td>Operating System Environment</td><td class="num">~30</td><td><span class="tag tag-teal">Label</span></td></tr>
+      <tr><td><code>WAH</code></td><td>Work At Home</td><td class="num">~28</td><td><span class="tag tag-purple">License</span></td></tr>
       <tr><td><code>SCE</code></td><td>Server and Cloud Enrollment</td><td class="num">~20</td><td><span class="tag tag-purple">License</span></td></tr>
     </tbody>
   </table>
@@ -668,13 +691,13 @@ body {
     <div class="section-icon" style="background: var(--amber-light); color: var(--amber);"><i class="fa-solid fa-globe"></i></div>
     <h2>区域代码</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:14px;">区域代码 = 国家/大洲缩写 + 方向。</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">区域代码 = 国家/大洲缩写 + 方向。共 50 个区域。</p>
 
   <div class="card" style="background: var(--code-bg); border-color: var(--border);">
     <p style="font-family:'IBM Plex Mono',monospace; font-size: 12.5px;">
       <span style="color:var(--accent); font-weight:600;">[Country]</span> + <span style="color:var(--green); font-weight:600;">[Direction]</span>
       &nbsp;&mdash;&nbsp;
-      e.g. <code>US</code> <code>E2</code> = US East 2 &nbsp;|&nbsp; <code>AP</code> <code>SE</code> = Asia Pacific Southeast
+      e.g. <code>US</code> <code>W2</code> = US West 2 &nbsp;|&nbsp; <code>AP</code> <code>SE</code> = Asia Pacific Southeast
     </p>
   </div>
 
@@ -683,44 +706,62 @@ body {
       <tr><th>Code</th><th>Full Name</th><th>Location</th><th>SKUs</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>US E</code></td><td>US East</td><td>Virginia</td><td class="num">15,948</td></tr>
-      <tr><td><code>US E2</code></td><td>US East 2</td><td>Virginia</td><td class="num">14,712</td></tr>
-      <tr><td><code>US W</code></td><td>US West</td><td>California</td><td class="num">13,020</td></tr>
-      <tr><td><code>US W2</code></td><td>US West 2</td><td>Oregon</td><td class="num">17,484</td></tr>
-      <tr><td><code>US SC</code></td><td>US South Central</td><td>Texas</td><td class="num">14,484</td></tr>
-      <tr><td><code>US NC</code></td><td>US North Central</td><td>Illinois</td><td class="num">11,712</td></tr>
-      <tr><td><code>US WC</code></td><td>US West Central</td><td>Wyoming</td><td class="num">11,400</td></tr>
-      <tr><td><code>US C</code></td><td>US Central</td><td>Iowa</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>EU W</code></td><td>Europe West</td><td>Netherlands</td><td class="num">16,776</td></tr>
-      <tr><td><code>EU N</code></td><td>Europe North</td><td>Ireland</td><td class="num">15,300</td></tr>
-      <tr><td><code>UK S</code></td><td>UK South</td><td>London</td><td class="num">17,088</td></tr>
-      <tr><td><code>UK W</code></td><td>UK West</td><td>Cardiff</td><td class="num">14,148</td></tr>
-      <tr><td><code>AP SE</code></td><td>Asia Pacific SE</td><td>Singapore</td><td class="num">16,260</td></tr>
-      <tr><td><code>AP E</code></td><td>Asia Pacific East</td><td>Hong Kong</td><td class="num">11,856</td></tr>
-      <tr><td><code>JA E</code></td><td>Japan East</td><td>Tokyo</td><td class="num">15,624</td></tr>
-      <tr><td><code>JA W</code></td><td>Japan West</td><td>Osaka</td><td class="num">13,104</td></tr>
-      <tr><td><code>AU E</code></td><td>Australia East</td><td>NSW</td><td class="num">15,624</td></tr>
-      <tr><td><code>AU SE</code></td><td>Australia SE</td><td>Victoria</td><td class="num">12,048</td></tr>
-      <tr><td><code>KR S</code></td><td>Korea South</td><td>Busan</td><td class="num">13,284</td></tr>
-      <tr><td><code>KR C</code></td><td>Korea Central</td><td>Seoul</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>IN S</code></td><td>India South</td><td>Chennai</td><td class="num">12,228</td></tr>
-      <tr><td><code>IN W</code></td><td>India West</td><td>Mumbai</td><td class="num">10,308</td></tr>
-      <tr><td><code>IN C</code></td><td>India Central</td><td>Pune</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>CA E</code></td><td>Canada East</td><td>Quebec</td><td class="num">11,868</td></tr>
-      <tr><td><code>CA C</code></td><td>Canada Central</td><td>Toronto</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>BR S</code></td><td>Brazil South</td><td>S&atilde;o Paulo</td><td class="num">12,348</td></tr>
-      <tr><td><code>FR S</code></td><td>France South</td><td>Marseille</td><td class="num">12,852</td></tr>
-      <tr><td><code>CH N</code></td><td>Switzerland North</td><td>Zurich</td><td class="num">11,916</td></tr>
-      <tr><td><code>CH W</code></td><td>Switzerland West</td><td>Geneva</td><td class="num">10,920</td></tr>
-      <tr><td><code>DE WC</code></td><td>Germany West Central</td><td>Frankfurt</td><td class="num">6,540</td></tr>
-      <tr><td><code>DE N</code></td><td>Germany North</td><td>Berlin</td><td class="num">5,880</td></tr>
-      <tr><td><code>AE N</code></td><td>UAE North</td><td>Dubai</td><td class="num">11,556</td></tr>
-      <tr><td><code>ZA N</code></td><td>South Africa North</td><td>Johannesburg</td><td class="num">9,204</td></tr>
-      <tr><td><code>ZA W</code></td><td>South Africa West</td><td>Cape Town</td><td class="num">8,532</td></tr>
-      <tr><td><code>NO E</code></td><td>Norway East</td><td>Oslo</td><td class="num">2,472</td></tr>
-      <tr><td><code>NO W</code></td><td>Norway West</td><td>Stavanger</td><td class="num">2,280</td></tr>
+      <tr><td><code>EU W</code></td><td>West Europe</td><td>Netherlands</td><td class="num">18,240</td></tr>
+      <tr><td><code>US W2</code></td><td>West US 2</td><td>Oregon</td><td class="num">17,004</td></tr>
+      <tr><td><code>UK S</code></td><td>UK South</td><td>London</td><td class="num">16,236</td></tr>
+      <tr><td><code>US E</code></td><td>East US</td><td>Virginia</td><td class="num">16,152</td></tr>
+      <tr><td><code>AP SE</code></td><td>Southeast Asia</td><td>Singapore</td><td class="num">15,816</td></tr>
+      <tr><td><code>AU E</code></td><td>Australia East</td><td>NSW</td><td class="num">15,288</td></tr>
+      <tr><td><code>JA E</code></td><td>Japan East</td><td>Tokyo</td><td class="num">15,120</td></tr>
+      <tr><td><code>EU N</code></td><td>North Europe</td><td>Ireland</td><td class="num">15,000</td></tr>
+      <tr><td><code>US SC</code></td><td>South Central US</td><td>Texas</td><td class="num">14,820</td></tr>
+      <tr><td><code>US E2</code></td><td>East US 2</td><td>Virginia</td><td class="num">14,208</td></tr>
+      <tr><td><code>KR C</code></td><td>Korea Central</td><td>Seoul</td><td class="num">13,608</td></tr>
+      <tr><td><code>FR C</code></td><td>France Central</td><td>Paris</td><td class="num">13,428</td></tr>
+      <tr><td><code>UK W</code></td><td>UK West</td><td>Cardiff</td><td class="num">13,404</td></tr>
+      <tr><td><code>IN C</code></td><td>Central India</td><td>Pune</td><td class="num">13,212</td></tr>
+      <tr><td><code>AU C</code></td><td>Australia Central</td><td>Canberra</td><td class="num">13,092</td></tr>
+      <tr><td><code>KR S</code></td><td>Korea South</td><td>Busan</td><td class="num">12,840</td></tr>
+      <tr><td><code>AU C2</code></td><td>Australia Central 2</td><td>Canberra</td><td class="num">12,840</td></tr>
+      <tr><td><code>US W</code></td><td>West US</td><td>California</td><td class="num">12,804</td></tr>
+      <tr><td><code>JA W</code></td><td>Japan West</td><td>Osaka</td><td class="num">12,456</td></tr>
+      <tr><td><code>CA C</code></td><td>Canada Central</td><td>Toronto</td><td class="num">12,168</td></tr>
+      <tr><td><code>FR S</code></td><td>France South</td><td>Marseille</td><td class="num">12,084</td></tr>
+      <tr><td><code>ZA N</code></td><td>South Africa North</td><td>Johannesburg</td><td class="num">11,988</td></tr>
+      <tr><td><code>BR S</code></td><td>Brazil South</td><td>S&atilde;o Paulo</td><td class="num">11,604</td></tr>
+      <tr><td><code>CH N</code></td><td>Switzerland North</td><td>Zurich</td><td class="num">11,580</td></tr>
+      <tr><td><code>DE WC</code></td><td>Germany West Central</td><td>Frankfurt</td><td class="num">11,532</td></tr>
+      <tr><td><code>IN S</code></td><td>South India</td><td>Chennai</td><td class="num">11,532</td></tr>
+      <tr><td><code>AU SE</code></td><td>Australia Southeast</td><td>Victoria</td><td class="num">11,352</td></tr>
+      <tr><td><code>CA E</code></td><td>Canada East</td><td>Quebec</td><td class="num">11,292</td></tr>
+      <tr><td><code>AP E</code></td><td>East Asia</td><td>Hong Kong</td><td class="num">11,268</td></tr>
+      <tr><td><code>AE N</code></td><td>UAE North</td><td>Dubai</td><td class="num">11,232</td></tr>
+      <tr><td><code>DE N</code></td><td>Germany North</td><td>Berlin</td><td class="num">11,220</td></tr>
+      <tr><td><code>ZA W</code></td><td>South Africa West</td><td>Cape Town</td><td class="num">11,100</td></tr>
+      <tr><td><code>US NC</code></td><td>North Central US</td><td>Illinois</td><td class="num">11,052</td></tr>
+      <tr><td><code>US WC</code></td><td>West Central US</td><td>Wyoming</td><td class="num">10,800</td></tr>
+      <tr><td><code>CH W</code></td><td>Switzerland West</td><td>Geneva</td><td class="num">10,644</td></tr>
+      <tr><td><code>US C</code></td><td>Central US</td><td>Iowa</td><td class="num">10,284</td></tr>
+      <tr><td><code>AE C</code></td><td>UAE Central</td><td>Abu Dhabi</td><td class="num">10,212</td></tr>
+      <tr><td><code>IN W</code></td><td>West India</td><td>Mumbai</td><td class="num">9,744</td></tr>
+      <tr><td><code>NO E</code></td><td>Norway East</td><td>Oslo</td><td class="num">9,276</td></tr>
+      <tr><td><code>NO W</code></td><td>Norway West</td><td>Stavanger</td><td class="num">6,048</td></tr>
+      <tr><td><code>BR SE</code></td><td>Brazil Southeast</td><td>Rio de Janeiro</td><td class="num">888</td></tr>
+      <tr><td><code>US W3</code></td><td>West US 3</td><td>Arizona</td><td class="num">228</td></tr>
+      <tr><td><code>SE C</code></td><td>Sweden Central</td><td>G&auml;vle</td><td class="num">48</td></tr>
     </tbody>
   </table>
+
+  <div class="card" style="margin-top: 12px;">
+    <div class="card-title"><i class="fa-solid fa-wifi" style="color:var(--accent);"></i> Bandwidth / Routing Codes</div>
+    <table class="wiki-table" style="margin:0">
+      <tr><td><code>AS</code></td><td>Asia routing zone</td></tr>
+      <tr><td><code>EU</code></td><td>Europe routing zone</td></tr>
+      <tr><td><code>IC</code></td><td>Inter-Continental</td></tr>
+      <tr><td><code>IN</code></td><td>India routing zone</td></tr>
+      <tr><td><code>OC</code></td><td>Oceania routing zone</td></tr>
+    </table>
+  </div>
 
   <div class="card" style="margin-top: 12px;">
     <div class="card-title"><i class="fa-solid fa-triangle-exclamation" style="color:var(--amber);"></i> Disambiguation</div>
@@ -740,26 +781,30 @@ body {
     <div class="section-icon" style="background: var(--red-light); color: var(--red);"><i class="fa-solid fa-server"></i></div>
     <h2>VM 系列速查</h2>
   </div>
-  <p style="color:var(--fg2); margin-bottom:14px;">Azure Compute = 324,012 rows (54%). All VM families listed below.</p>
+  <p style="color:var(--fg2); margin-bottom:14px;">Azure Compute = 332,172 rows (55.4%). All VM families listed below.</p>
 
   <table class="wiki-table">
     <thead><tr><th>Series</th><th>Category</th><th>Use Cases</th><th>SKUs</th></tr></thead>
     <tbody>
-      <tr><td><code>A / Av2</code></td><td>Entry-level GP</td><td>Dev/test, low-traffic apps</td><td class="num">2,836</td></tr>
-      <tr><td><code>BS</code></td><td>Burstable</td><td>Lightweight web, microservices</td><td class="num">1,236</td></tr>
-      <tr><td><code>D / DS / Dv2 / DSv2</code></td><td>General Purpose v1-v2</td><td>Enterprise apps, mid-range DB</td><td class="num">2,142</td></tr>
-      <tr><td><code>Dv3 / DSv3</code></td><td>General Purpose v3</td><td>Same, newer hardware</td><td class="num">3,293</td></tr>
-      <tr><td><code>Ev3 / ESv3</code></td><td>Memory Optimized v3</td><td>Large DB, in-memory cache, SAP</td><td class="num">4,405</td></tr>
-      <tr><td><code>F / FS</code></td><td>Compute Optimized v1</td><td>Batch, game servers</td><td class="num">1,170</td></tr>
-      <tr><td><code>FSv2</code></td><td>Compute Optimized v2</td><td>Higher CPU perf</td><td class="num">1,786</td></tr>
-      <tr><td><code>G / GS</code></td><td>Large Memory (legacy)</td><td>Data warehousing</td><td class="num">320</td></tr>
-      <tr><td><code>H</code></td><td>HPC</td><td>CFD, financial modeling</td><td class="num">456</td></tr>
-      <tr><td><code>HBS / HCS</code></td><td>HPC v2</td><td>Memory/CPU-bound HPC</td><td class="num">30</td></tr>
-      <tr><td><code>LS / LSv2</code></td><td>Storage Optimized</td><td>High disk throughput, NoSQL</td><td class="num">488</td></tr>
-      <tr><td><code>MS / MSv2</code></td><td>Extreme Memory</td><td>SAP HANA (up to 4TB RAM)</td><td class="num">2,100</td></tr>
-      <tr><td><code>NCSv3</code></td><td>GPU Inference</td><td>NVIDIA V100, deep learning</td><td class="num">336</td></tr>
-      <tr><td><code>NVSv3</code></td><td>GPU Visualization</td><td>vGPU, remote desktop</td><td class="num">108</td></tr>
-      <tr><td><code>PB</code></td><td>GPU AI/ML</td><td>NVIDIA A100, LLM training</td><td class="num">45</td></tr>
+      <tr><td><code>A / Av2</code></td><td>Entry-level GP</td><td>Dev/test, low-traffic apps</td><td class="num">~6,000 + 38,832</td></tr>
+      <tr><td><code>BS</code></td><td>Burstable</td><td>Lightweight web, microservices</td><td class="num">4,752</td></tr>
+      <tr><td><code>D / DS</code></td><td>General Purpose v1</td><td>Enterprise apps, mid-range DB</td><td class="num">6,048</td></tr>
+      <tr><td><code>Dv2 / DSv2</code></td><td>General Purpose v2</td><td>Same, newer hardware</td><td class="num">7,944</td></tr>
+      <tr><td><code>Dv3 / DSv3</code></td><td>General Purpose v3</td><td>Latest GP generation</td><td class="num">6,696</td></tr>
+      <tr><td><code>Dav4 / Dasv4</code></td><td>AMD EPYC GP</td><td>AMD-based GP workloads</td><td class="num">432</td></tr>
+      <tr><td><code>F / FS</code></td><td>Compute Optimized v1</td><td>Batch, game servers</td><td class="num">18,612</td></tr>
+      <tr><td><code>FSv2</code></td><td>Compute Optimized v2</td><td>Higher CPU perf</td><td class="num">33,468</td></tr>
+      <tr><td><code>Ev3 / ESv3</code></td><td>Memory Optimized v3</td><td>Large DB, in-memory cache, SAP</td><td class="num">11,724</td></tr>
+      <tr><td><code>MS</code></td><td>M-series Extreme Memory</td><td>SAP HANA (up to 4TB RAM)</td><td class="num">34,368</td></tr>
+      <tr><td><code>MSv2</code></td><td>M-series v2</td><td>Next-gen extreme memory</td><td class="num">2,016</td></tr>
+      <tr><td><code>G / GS</code></td><td>Large Memory (legacy)</td><td>Data warehousing</td><td class="num">3,120</td></tr>
+      <tr><td><code>H</code></td><td>HPC</td><td>CFD, financial modeling</td><td class="num">~5,184</td></tr>
+      <tr><td><code>HBS / HCS</code></td><td>HPC v2</td><td>Memory/CPU-bound HPC</td><td class="num">720</td></tr>
+      <tr><td><code>LS / LSv2</code></td><td>Storage Optimized</td><td>High disk throughput, NoSQL</td><td class="num">5,472</td></tr>
+      <tr><td><code>NCSv3</code></td><td>GPU NVIDIA V100</td><td>Deep learning inference</td><td class="num">3,456</td></tr>
+      <tr><td><code>NVSv3</code></td><td>GPU Visualization</td><td>vGPU, remote desktop</td><td class="num">2,736</td></tr>
+      <tr><td><code>NDrSv2</code></td><td>GPU InfiniBand</td><td>Distributed training</td><td class="num">216</td></tr>
+      <tr><td><code>PB</code></td><td>GPU AI/ML</td><td>LLM training, NVIDIA A100</td><td class="num">540</td></tr>
     </tbody>
   </table>
 
@@ -785,63 +830,67 @@ body {
 
   <div class="tree-block">
     <span class="tree-key">Pool</span> <span class="tree-meta">(top-level classification)</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Servers <span class="tree-meta">&middot; 593,606 rows &middot; Azure + Win Server + SQL Server</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Applications <span class="tree-meta">&middot; 5,626 rows &middot; Office / Project / Visio</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Systems <span class="tree-meta">&middot; 616 rows &middot; Windows OS / endpoint</span><br>
-    &nbsp;&nbsp;&#9492;&#9472; Non-specific <span class="tree-meta">&middot; 152 rows</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Servers <span class="tree-meta">&middot; 593,436 rows &middot; Azure + Win Server + SQL Server</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Applications <span class="tree-meta">&middot; 5,793 rows &middot; Office / M365 / D365 / Power Platform</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Systems <span class="tree-meta">&middot; 423 rows &middot; Windows client OS</span><br>
+    &nbsp;&nbsp;&#9492;&#9472; Non-specific <span class="tree-meta">&middot; 348 rows</span><br>
     <br>
-    <span class="tree-key">Product Family</span> <span class="tree-meta">(429 families)</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Azure Compute <span class="tree-meta">&middot; 324K</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Azure Storage <span class="tree-meta">&middot; 88K</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Azure SQL DB <span class="tree-meta">&middot; 51K</span><br>
-    &nbsp;&nbsp;&#9492;&#9472; ... <span class="tree-meta">426 more</span><br>
+    <span class="tree-key">Product Family</span> <span class="tree-meta">(271 families)</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Azure Compute <span class="tree-meta">&middot; 332K</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Azure Storage <span class="tree-meta">&middot; 91K</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Azure SQL DB <span class="tree-meta">&middot; 43K</span><br>
+    &nbsp;&nbsp;&#9492;&#9472; ... <span class="tree-meta">268 more</span><br>
     <br>
     <span class="tree-key">Product Grouping</span> <span class="tree-meta">(pricing model)</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Online Subscription - Overage VL <span class="tree-meta">&middot; 587K &middot; Azure consumption</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Volume Licensing <span class="tree-meta">&middot; 7.4K &middot; traditional on-prem</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Online Subscription Fixed Lic VL <span class="tree-meta">&middot; 4.9K &middot; M365/D365 fixed</span><br>
-    &nbsp;&nbsp;&#9492;&#9472; Online Subscription - Commit VL <span class="tree-meta">&middot; 540 &middot; pre-commit</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Online Subscription - Overage VL <span class="tree-meta">&middot; 582K &middot; Azure consumption</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Volume Licensing <span class="tree-meta">&middot; 15,364 &middot; traditional on-prem</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Online Subscription Fixed Lic VL <span class="tree-meta">&middot; 2,276 &middot; SaaS subscriptions</span><br>
+    &nbsp;&nbsp;&#9492;&#9472; Online Subscription - Commit VL <span class="tree-meta">&middot; 360 &middot; Azure MACC</span><br>
     <br>
     <span class="tree-key">Product Type</span> <span class="tree-meta">(billing method)</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Fee <span class="tree-meta">&middot; 587K &middot; metered usage</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Monthly Subscriptions-VL <span class="tree-meta">&middot; 5.2K</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; License/SA Pack <span class="tree-meta">&middot; 4K &middot; perpetual + SA</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; SA <span class="tree-meta">&middot; 1.4K &middot; renewal only</span><br>
-    &nbsp;&nbsp;&#9500;&#9472; Step Up <span class="tree-meta">&middot; 860 &middot; edition upgrade</span><br>
-    &nbsp;&nbsp;&#9492;&#9472; SA Step Up / Extended / WAH <span class="tree-meta">&middot; misc</span>
+    &nbsp;&nbsp;&#9500;&#9472; Fee <span class="tree-meta">&middot; 582,092 &middot; metered usage</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; License/Software Assurance Pack <span class="tree-meta">&middot; 8,317 &middot; perpetual + SA</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Software Assurance <span class="tree-meta">&middot; 3,819 &middot; SA renewal</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Monthly Subscriptions-VL <span class="tree-meta">&middot; 2,567</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; SA Step Up <span class="tree-meta">&middot; 1,538</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Standard <span class="tree-meta">&middot; 1,026</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Step Up <span class="tree-meta">&middot; 420</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Extended Coverage <span class="tree-meta">&middot; 181</span><br>
+    &nbsp;&nbsp;&#9500;&#9472; Work At Home <span class="tree-meta">&middot; 28</span><br>
+    &nbsp;&nbsp;&#9492;&#9472; Azure Consumption Commitment <span class="tree-meta">&middot; 12</span>
   </div>
 </div>
 
-<!-- Product Families Top 30 -->
+<!-- Product Families Top 20 -->
 <div class="section" id="families">
   <div class="section-header">
     <div class="section-icon" style="background: var(--green-light); color: var(--green);"><i class="fa-solid fa-boxes-stacked"></i></div>
-    <h2>Product Families (Top 25)</h2>
+    <h2>Product Families (Top 20)</h2>
   </div>
 
   <table class="wiki-table">
     <thead><tr><th>#</th><th>Product Family</th><th>Rows</th><th>Share</th></tr></thead>
     <tbody>
-      <tr><td class="num">1</td><td>Azure Compute</td><td class="num">324,012</td><td class="num">54.0%</td></tr>
-      <tr><td class="num">2</td><td>Azure Storage</td><td class="num">88,300</td><td class="num">14.7%</td></tr>
-      <tr><td class="num">3</td><td>Azure SQL DB</td><td class="num">50,928</td><td class="num">8.5%</td></tr>
-      <tr><td class="num">4</td><td>Azure SSD Compute</td><td class="num">20,832</td><td class="num">3.5%</td></tr>
-      <tr><td class="num">5</td><td>Azure Services in Preview</td><td class="num">14,292</td><td class="num">2.4%</td></tr>
-      <tr><td class="num">6</td><td>AppFabric Cache</td><td class="num">13,848</td><td class="num">2.3%</td></tr>
-      <tr><td class="num">7</td><td>App Services</td><td class="num">11,796</td><td class="num">2.0%</td></tr>
-      <tr><td class="num">8</td><td>Azure App Service</td><td class="num">11,688</td><td class="num">1.9%</td></tr>
-      <tr><td class="num">9</td><td>AZ STGE GPv2 ARCHIVE DATA ACCESS</td><td class="num">9,348</td><td class="num">1.6%</td></tr>
-      <tr><td class="num">10</td><td>Azure Networking</td><td class="num">4,536</td><td class="num">0.8%</td></tr>
-      <tr><td class="num">11</td><td>Azure Monitor</td><td class="num">4,116</td><td class="num">0.7%</td></tr>
-      <tr><td class="num">12</td><td>Azure ExpressRoute</td><td class="num">2,976</td><td class="num">0.5%</td></tr>
-      <tr><td class="num">13</td><td>AppFabric Service Bus</td><td class="num">2,700</td><td class="num">0.5%</td></tr>
-      <tr><td class="num">14</td><td>Azure Stack Consumption</td><td class="num">1,944</td><td class="num">0.3%</td></tr>
-      <tr><td class="num">15</td><td>Cognitive Services</td><td class="num">1,812</td><td class="num">0.3%</td></tr>
-      <tr><td class="num">16</td><td>Azure CDN</td><td class="num">1,476</td><td class="num">0.2%</td></tr>
-      <tr><td class="num">17</td><td>Azure Container Instances</td><td class="num">1,248</td><td class="num">0.2%</td></tr>
-      <tr><td class="num">18</td><td>PowerBI PaaS</td><td class="num">1,236</td><td class="num">0.2%</td></tr>
-      <tr><td class="num">19</td><td>Azure DevOps</td><td class="num">1,224</td><td class="num">0.2%</td></tr>
-      <tr><td class="num">20</td><td>Data Box</td><td class="num">1,164</td><td class="num">0.2%</td></tr>
+      <tr><td class="num">1</td><td>Azure Compute</td><td class="num">332,172</td><td class="num">55.4%</td></tr>
+      <tr><td class="num">2</td><td>Azure Storage</td><td class="num">91,488</td><td class="num">15.2%</td></tr>
+      <tr><td class="num">3</td><td>Azure SQL DB</td><td class="num">43,128</td><td class="num">7.2%</td></tr>
+      <tr><td class="num">4</td><td>Azure SSD Compute</td><td class="num">19,464</td><td class="num">3.2%</td></tr>
+      <tr><td class="num">5</td><td>Azure Services in Preview</td><td class="num">15,072</td><td class="num">2.5%</td></tr>
+      <tr><td class="num">6</td><td>Azure App Service</td><td class="num">11,796</td><td class="num">2.0%</td></tr>
+      <tr><td class="num">7</td><td>AppFabric Cache</td><td class="num">10,716</td><td class="num">1.8%</td></tr>
+      <tr><td class="num">8</td><td>App Services</td><td class="num">8,364</td><td class="num">1.4%</td></tr>
+      <tr><td class="num">9</td><td>AZ STGE GPv2 ARCHIVE DATA ACCESS</td><td class="num">7,836</td><td class="num">1.3%</td></tr>
+      <tr><td class="num">10</td><td>Azure Networking</td><td class="num">7,440</td><td class="num">1.2%</td></tr>
+      <tr><td class="num">11</td><td>MCA Azure Sentinel</td><td class="num">4,584</td><td class="num">0.8%</td></tr>
+      <tr><td class="num">12</td><td>AZ STGE GPv2 ARCHIVE DATA STGE GB</td><td class="num">4,248</td><td class="num">0.7%</td></tr>
+      <tr><td class="num">13</td><td>Azure Monitor</td><td class="num">3,036</td><td class="num">0.5%</td></tr>
+      <tr><td class="num">14</td><td>Azure ExpressRoute</td><td class="num">2,604</td><td class="num">0.4%</td></tr>
+      <tr><td class="num">15</td><td>AZ STGE GPv2 QUEUE DATA ACCESS</td><td class="num">2,544</td><td class="num">0.4%</td></tr>
+      <tr><td class="num">16</td><td>Azure Spring Cloud Services</td><td class="num">2,064</td><td class="num">0.3%</td></tr>
+      <tr><td class="num">17</td><td>AZ STGE GPv2 FILE SYNC</td><td class="num">1,740</td><td class="num">0.3%</td></tr>
+      <tr><td class="num">18</td><td>AppFabric Service Bus</td><td class="num">1,572</td><td class="num">0.3%</td></tr>
+      <tr><td class="num">19</td><td>AZ STGE GPv2 STDPGBLB+DISK ACCESS</td><td class="num">1,332</td><td class="num">0.2%</td></tr>
+      <tr><td class="num">20</td><td>Reserved VM Instance</td><td class="num">1,140</td><td class="num">0.2%</td></tr>
     </tbody>
   </table>
 </div>
@@ -857,30 +906,38 @@ body {
   <table class="wiki-table">
     <thead><tr><th>Prefix</th><th>Product Area</th><th>Rows</th><th>Share</th></tr></thead>
     <tbody>
-      <tr><td><code>AAD</code></td><td>Azure IaaS / Compute</td><td class="num">319,768</td><td class="num">53%</td></tr>
-      <tr><td><code>AAA</code></td><td>Microsoft 365 / Office 365</td><td class="num">245,052</td><td class="num">41%</td></tr>
-      <tr><td><code>997</code></td><td>Azure SSD Compute (legacy)</td><td class="num">18,972</td><td class="num">3%</td></tr>
-      <tr><td><code>4WP</code></td><td>Azure SQL Database</td><td class="num">4,572</td><td class="num">0.8%</td></tr>
-      <tr><td><code>9EA</code></td><td>Windows Server DC Core</td><td class="num">532</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>9EP</code></td><td>System Center DC Core</td><td class="num">520</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>9GS</code></td><td>CIS Suite DC Core</td><td class="num">480</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>76A</code></td><td>ECAL (Enterprise CAL)</td><td class="num">368</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>76N</code></td><td>SharePoint Enterprise CAL</td><td class="num">328</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>9EM</code></td><td>Windows Server Standard Core</td><td class="num">328</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>359</code></td><td>SQL CAL</td><td class="num">256</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>3SK</code></td><td>Azure Redis Cache</td><td class="num">216</td><td class="num">&mdash;</td></tr>
-      <tr><td><code>021</code></td><td>Office Standard (on-prem)</td><td class="num">124</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>AAD</code></td><td>Azure IaaS / Compute</td><td class="num">348,125</td><td class="num">58%</td></tr>
+      <tr><td><code>AAA</code></td><td>Azure Storage / SQL / M365</td><td class="num">211,871</td><td class="num">35.3%</td></tr>
+      <tr><td><code>997</code></td><td>Azure SSD Compute</td><td class="num">18,360</td><td class="num">3.1%</td></tr>
+      <tr><td><code>4WP</code></td><td>Azure SQL Database</td><td class="num">4,212</td><td class="num">0.7%</td></tr>
+      <tr><td><code>9GS</code></td><td>CIS Suite DC Core</td><td class="num">1,062</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>9EA</code></td><td>Windows Server DC Core</td><td class="num">878</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>9EP</code></td><td>System Center DC Core</td><td class="num">866</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>9GA</code></td><td>CIS Suite Std Core</td><td class="num">824</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>76N</code></td><td>SharePoint Enterprise CAL</td><td class="num">677</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>7AH</code></td><td>SfB Server Enterprise CAL</td><td class="num">677</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>76A</code></td><td>ECAL</td><td class="num">654</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>6ZH</code></td><td>SfB Server Standard CAL</td><td class="num">589</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>9EM</code></td><td>Win Server Standard Core</td><td class="num">540</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>359</code></td><td>SQL CAL</td><td class="num">533</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>9EN</code></td><td>System Center Standard Core</td><td class="num">524</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>126</code></td><td>Azure DevOps Server CAL</td><td class="num">473</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>381</code></td><td>Exchange Standard CAL</td><td class="num">471</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>6VC</code></td><td>Win Remote Desktop Services CAL</td><td class="num">437</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>7JQ</code></td><td>SQL Server Enterprise Core</td><td class="num">409</td><td class="num">&mdash;</td></tr>
+      <tr><td><code>269</code></td><td>Office Professional Plus</td><td class="num">373</td><td class="num">&mdash;</td></tr>
     </tbody>
   </table>
 
   <div class="card" style="margin-top:12px;">
     <div class="card-title"><i class="fa-solid fa-lightbulb" style="color:var(--amber);"></i> Pattern Summary</div>
     <p style="font-size:12.5px; color:var(--fg2);">
-      <code>AAD-</code> Azure consumption (53%) &nbsp;|&nbsp;
-      <code>AAA-</code> M365/O365 subscriptions (41%) &nbsp;|&nbsp;
-      <code>9xx-</code> On-prem server software &nbsp;|&nbsp;
-      <code>76x-</code> CAL products &nbsp;|&nbsp;
-      <code>021-</code> Legacy Office
+      <code>AAD-</code> Azure IaaS (58%) &nbsp;|&nbsp;
+      <code>AAA-</code> Azure Storage/SQL (35%) &nbsp;|&nbsp;
+      <code>997-</code> legacy SSD (3%) &nbsp;|&nbsp;
+      <code>9xx-</code> server infra &nbsp;|&nbsp;
+      <code>76x-</code> CAL &nbsp;|&nbsp;
+      <code>3xx-</code> misc server apps
     </p>
   </div>
 </div>
@@ -894,23 +951,50 @@ body {
 
   <h3 style="font-size:14px; margin-bottom:8px; font-weight:600;">Program</h3>
   <table class="wiki-table">
-    <tr><td><code>Enterprise 6</code></td><td>EA &mdash; 3-year commitment, fixed pricing</td><td class="num">400,652</td></tr>
-    <tr><td><code>Enterprise Subscription</code></td><td>EAS &mdash; annual, no perpetual rights</td><td class="num">199,348</td></tr>
+    <tr><td><code>Enterprise 6</code></td><td>EA &mdash; 3-year commitment</td><td class="num">395,380</td></tr>
+    <tr><td><code>Enterprise Subscription</code></td><td>EAS &mdash; annual subscription</td><td class="num">196,024</td></tr>
+    <tr><td><code>Select Plus</code></td><td>Perpetual VL</td><td class="num">4,756</td></tr>
+    <tr><td><code>SELECT</code></td><td>Perpetual VL</td><td class="num">3,604</td></tr>
+    <tr><td><code>Campus 3</code></td><td>Academic</td><td class="num">145</td></tr>
+    <tr><td><code>School 3</code></td><td>Academic</td><td class="num">90</td></tr>
+    <tr><td><code>Get Genuine Agreement</code></td><td>GGK</td><td class="num">1</td></tr>
   </table>
 
   <h3 style="font-size:14px; margin: 16px 0 8px; font-weight:600;">Levels (EA Discount Bands)</h3>
   <table class="wiki-table">
-    <tr><td><code>A</code></td><td>Smallest commitment (lowest discount)</td></tr>
-    <tr><td><code>B</code></td><td>Mid-range</td></tr>
-    <tr><td><code>C</code></td><td>Higher commitment</td></tr>
-    <tr><td><code>D</code></td><td>Largest commitment (deepest discount)</td></tr>
+    <tr><td><code>A</code></td><td>Smallest commitment (lowest discount)</td><td class="num">150,480</td></tr>
+    <tr><td><code>B</code></td><td>Mid-range</td><td class="num">149,784</td></tr>
+    <tr><td><code>C</code></td><td>Higher commitment</td><td class="num">149,781</td></tr>
+    <tr><td><code>D</code></td><td>Largest commitment (deepest discount)</td><td class="num">149,781</td></tr>
+    <tr><td><code>Non-Specific</code></td><td>Not level-specific</td><td class="num">174</td></tr>
   </table>
 
   <h3 style="font-size:14px; margin: 16px 0 8px; font-weight:600;">Offering</h3>
   <table class="wiki-table">
-    <tr><td><code>Additional Product</code></td><td>Add-on workloads on top of base enrollment</td><td class="num">397,606</td></tr>
-    <tr><td><code>Server and Cloud Enrollment</code></td><td>SCE: server + cloud bundle</td><td class="num">197,822</td></tr>
-    <tr><td><code>Enterprise</code></td><td>Core platform entitlement</td><td class="num">4,536</td></tr>
+    <tr><td><code>Additional Product</code></td><td>Add-on workloads on top of base enrollment</td><td class="num">392,249</td></tr>
+    <tr><td><code>Server and Cloud Enrollment</code></td><td>SCE: server + cloud bundle</td><td class="num">195,948</td></tr>
+    <tr><td><code>MVLP</code></td><td>Microsoft Volume Licensing Programs</td><td class="num">8,361</td></tr>
+    <tr><td><code>Enterprise</code></td><td>Core platform entitlement</td><td class="num">3,224</td></tr>
+    <tr><td><code>Faculty</code></td><td>Academic faculty offering</td><td class="num">85</td></tr>
+    <tr><td><code>Student</code></td><td>Academic student offering</td><td class="num">54</td></tr>
+    <tr><td><code>Non-Specific</code></td><td>Not offering-specific</td><td class="num">43</td></tr>
+    <tr><td><code>Industry Device Program</code></td><td>IoT / industry devices</td><td class="num">36</td></tr>
+  </table>
+</div>
+
+<!-- License Agreement Type -->
+<div class="section" id="agreement-type">
+  <div class="section-header">
+    <div class="section-icon" style="background: var(--teal-light); color: var(--teal);"><i class="fa-solid fa-handshake"></i></div>
+    <h2>协议类型 (License Agreement Type)</h2>
+  </div>
+
+  <table class="wiki-table">
+    <thead><tr><th>Type</th><th>Rows</th></tr></thead>
+    <tbody>
+      <tr><td>Corporate</td><td class="num">599,069</td></tr>
+      <tr><td>Academic</td><td class="num">931</td></tr>
+    </tbody>
   </table>
 </div>
 
@@ -968,12 +1052,14 @@ body {
   </div>
 
   <table class="wiki-table">
-    <thead><tr><th>Abbr</th><th>Full Name</th><th>Copies</th><th>Description</th></tr></thead>
+    <thead><tr><th>Abbr</th><th>Full Name</th><th>Copies</th><th>Description</th><th>SKUs</th></tr></thead>
     <tbody>
-      <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td><td>3</td><td>3 copies in one datacenter, cheapest</td></tr>
-      <tr><td><code>ZRS</code></td><td>Zone-Redundant Storage</td><td>3</td><td>Across 3 availability zones</td></tr>
-      <tr><td><code>GRS</code></td><td>Geo-Redundant Storage</td><td>6</td><td>Cross-region (3 primary + 3 secondary)</td></tr>
-      <tr><td><code>RA-GRS</code></td><td>Read-Access GRS</td><td>6</td><td>GRS + read access to secondary</td></tr>
+      <tr><td><code>LRS</code></td><td>Locally Redundant Storage</td><td>3</td><td>3 copies in single datacenter</td><td class="num">44,352</td></tr>
+      <tr><td><code>GRS</code></td><td>Geo-Redundant Storage</td><td>6</td><td>Cross-region (3 primary + 3 secondary)</td><td class="num">23,208</td></tr>
+      <tr><td><code>ZRS</code></td><td>Zone-Redundant Storage</td><td>3</td><td>Across 3 availability zones</td><td class="num">17,364</td></tr>
+      <tr><td><code>RA-GRS</code></td><td>Read-Access GRS</td><td>6</td><td>GRS + read access to secondary</td><td class="num">9,684</td></tr>
+      <tr><td><code>GZRS</code></td><td>Geo-Zone-Redundant Storage</td><td>6</td><td>ZRS + GRS combined</td><td class="num">576</td></tr>
+      <tr><td><code>RA-GZRS</code></td><td>Read-Access GZRS</td><td>6</td><td>Full combo: ZRS + GRS + read secondary</td><td class="num">132</td></tr>
     </tbody>
   </table>
 </div>
